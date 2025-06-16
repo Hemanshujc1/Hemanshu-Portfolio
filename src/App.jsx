@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Footer from "./components/Footer/Footer";
 import InitialPage from "./components/IntialPage/IntialPage";
 import Navbar from "./components/Navbar/Navbar";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
