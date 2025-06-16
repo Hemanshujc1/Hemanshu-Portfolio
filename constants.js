@@ -15,7 +15,7 @@ import pythonLogo from './src/assets/tech_logo/python.png';
 import typescriptLogo from './src/assets/tech_logo/typescript.png';
 import gitLogo from './src/assets/tech_logo/git.png';
 import githubLogo from './src/assets/tech_logo/github.png';
-import vscodeLogo from '../src/assets/tech_logo/vscode.png';
+import vscodeLogo from './src/assets/tech_logo/vscode.png';
 import postmanLogo from './src/assets/tech_logo/postman.png';
 import vercelLogo from './src/assets/tech_logo/vercel.png';
 
