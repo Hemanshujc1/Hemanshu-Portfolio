@@ -11,12 +11,7 @@ const AboutMeSection = () => {
             The only way to do great work is to love what you do.
           </h1>
           <p className="text-3xl">
-            As a React developer , I have honed my skills in JavaScript and am
-            currently learning TypeScript to expand my expertise. I pride myself
-            on being a quick learner and attentive listener, which allows me to
-            collaborate effectively with clients to create efficient and
-            scalable solutions. My focus is on developing user-friendly
-            applications that solve real-world problems.
+          I’m Hemanshu Choudhary, an ECE undergrad at IIIT Trichy (2022 – 2026) and a dedicated MERN‑stack developer. I build full‑stack web apps with React, Node.js, TypeScript, Vite & Tailwind CSS, transforming ideas into efficient, scalable solutions. As a DSA enthusiast and fast learner, I thrive on collaboration—delivering user‑centric software that solves real‑world problems.
           </p>
         </div>
         <Tilt

@@ -11,10 +11,10 @@ const experienceData = [
     department: "Lead Web-Developer",
     result: "Freelancing",
     descriptionPoints: [
-      "Led development of responsive websites and dashboards.",
-      "Integrated APIs and implemented SEO best practices.",
-      "Managed deployment and version control with GitHub.",
-    ],
+      "Built a responsive website using Next.js, Tailwind CSS, to deliver a sleek and accessible UI across devices.",
+      "Integrated Web3Forms for seamless lead generation and user contact handling.",
+      "Delivered the full frontend architecture, optimizing performance and SEO for a fintech startup."
+    ]
   },
   {
     logo: "/IIITT Logo.png",
@@ -23,9 +23,10 @@ const experienceData = [
     department: "Coordinator",
     result: "",
     descriptionPoints: [
-      "Coordinated placement drives and company onboarding.",
-      "Worked on resume verification and analytics tools.",
-    ],
+      "Collaborated with placement officers and company representatives to facilitate campus recruitment activities.",
+      "Coordinated student engagement and managed logistics for pre-placement talks, internships, and interviews."
+    ]
+    
   },
   {
     logo: "/ecell_iiitt_logo.jpeg",
@@ -34,9 +35,10 @@ const experienceData = [
     department: "Overall Coordinator",
     result: "",
     descriptionPoints: [
-      "Organized entrepreneurial events and workshops.",
-      "Collaborated with IITs and startups for mentorship programs.",
-    ],
+      "Led the Entrepreneurship Cell in organizing workshops, speaker sessions, and startup networking events.",
+      "Managed a team of coordinators to execute E-Cell initiatives and elevate campus startup culture."
+    ]
+    
   },
   
   {
@@ -46,20 +48,21 @@ const experienceData = [
     department: "Campus Executive",
     result: "",
     descriptionPoints: [
-      "Acted as the bridge between E-cell and IIITT.",
-      "Promoted and organized E-Summit participation.",
-    ],
+      "Promoted IIT Bombay’s E-Cell events and Ideation competitions across campus.",
+      "Acted as a liaison between the central E-Cell team and student participants to ensure smooth execution."
+    ]
+    
   },
   {
     logo: "/IIITT Logo.png",
     company: "Fests, IIIT Trichy",
-    duration: "2023–2024",
+    duration: " ",
     department: "Volunteer",
     result: "",
     descriptionPoints: [
-      "Managed event logistics and promotions.",
-      "Volunteered for registrations and crowd control.",
-    ],
+      "Contributed to organizing cultural and technical events by managing event logistics and coordination.",
+      "Assisted in crowd handling, registrations, and event execution during institute fests."
+    ]    
   },
   {
     logo: "/IIITT Logo.png",
@@ -68,9 +71,9 @@ const experienceData = [
     department: "Member",
     result: "",
     descriptionPoints: [
-      "Oversaw menu planning and hygiene checks.",
-      "Collected feedback and ensured implementation.",
-    ],
+      "Represented student feedback to improve food quality and hygiene in the mess facilities.",
+      "Collaborated with administration and vendors to implement menu changes and monitor services."
+    ]    
   },
 ];
 

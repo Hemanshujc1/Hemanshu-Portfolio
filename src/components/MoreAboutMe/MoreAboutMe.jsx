@@ -9,30 +9,16 @@ const MoreAboutMe = () => {
     <HeadingPart text="More About Me.. "></HeadingPart>
     <div className="aboutpara text-2xl flex flex-col gap-6 items-center px-5">
     <p>
-      I am a student of Electronics and Communication Engineering at IIIT
-      Trichy, from the ECE batch of 2026. I have a strong interest in web
-      development and data science, driven by a desire to create meaningful
-      and accessible solutions through technology.
+       I’ve channeled my curiosity into full-stack web development. Every day, I dive into React, Node.js, TypeScript, Vite, and Tailwind CSS - building apps that are as performant as they are user‑friendly.
     </p>
     <p>
-      Currently, I'm focusing on mastering both front-end and back-end
-      development, with the goal of building dynamic and user-friendly
-      websites and applications. Additionally, I am exploring the world of
-      data, learning SQL and Python libraries like NumPy and Pandas to
-      enhance my skills in data analysis and machine learning.
+    Beyond MERN, I’m honing my problem‑solving skills through DSA challenges and hands‑on projects in Next.js, TypeScript, and Tailwind CSS. Whether it’s refining an algorithm or architecting a new feature, I thrive on translating complex requirements into clean, maintainable code.
     </p>
     <p>
-      When I'm not coding, I enjoy exploring new technologies, working on
-      personal projects, or brainstorming ideas for my startup. My ultimate
-      objective is to combine my technical skills with my passion for
-      innovation to contribute to projects that have a positive impact on
-      people's lives.
+    When I’m not coding, you’ll find me sketching out ideas for side projects or exploring Web3 protocols. I thrive on collaboration—pair‑programming with peers, gathering feedback, and iterating fast to bring concepts to life.
     </p>
     <p>
-      I am always open to connecting with like-minded individuals and
-      exploring new opportunities, whether through internships, freelance
-      work, or collaborative projects. Let's create something amazing
-      together!
+    I’m always open to new opportunities—internships, freelance gigs, or team projects. If you’re looking for a passionate developer who learns quickly and delivers impactful solutions, let’s connect and create something great together!
     </p>
     <div className="max-w-fit">
           <Button text="Download My Resume" to="#"></Button>

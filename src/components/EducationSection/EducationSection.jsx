@@ -10,10 +10,8 @@ const Educationdata = [
     department: "B.Tech. in Electronics & Communication",
     result: "CGPA: 8.54",
     descriptionPoints: [
-      "Studied subjects like Semiconductors Devices, VLSI, FPGA, Electronic Circuits & Networks.",
-      "Covered Communication Systems like Signals & Systems, RF & Microwave Engineering, and Antenna Theory.",
-      "Completed courses in Coding, Deep Learning, Cloud Computing, and Full Stack Development.",
-      "Involved in clubs, societies, and voluntary activities.",
+      "Pursuing core subjects like Digital Electronics, Signal Processing, and Embedded Systems, with additional focus on web development and DSA.",
+      "Participated in multiple tech clubs and student bodies, balancing academics with leadership roles and real-world projects.",
     ],
   },
   {
@@ -24,10 +22,10 @@ const Educationdata = [
     department: "Class 12th (Science Stream)",
     result: "Percentage: 88.17%",
     descriptionPoints: [
-      "Studied Physics, Chemistry, and Mathematics with focus on basic electronics.",
+      "Studied core science subjects with a focus on Physics, Chemistry, and Mathematics.",
       "Prepared for competitive exams including JEE.",
-      "Participated in science exhibitions and academic clubs.",
-    ],
+    ]
+    
   },
   {
     logo: "/narayana-logo.png",
@@ -37,10 +35,10 @@ const Educationdata = [
     department: "Class 10th",
     result: "Percentage: 93.6%",
     descriptionPoints: [
-      "Strong foundation in Mathematics and Science.",
+      "Consistently performed at the top of the class and maintained academic excellence across all subjects.",
       "Actively participated in Olympiads and quiz competitions.",
-      "Served as class representative and participated in cultural events.",
     ],
+    
   },
 ];
 

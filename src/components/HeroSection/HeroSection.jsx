@@ -32,9 +32,7 @@ const HeroSection = () => {
           </h3>
         </div>
         <p className="text-lg mb-6 font-extrabold">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus
-          inventore deserunt at consequatur ipsa! Aspernatur totam nesciunt
-          commodi velit quod?
+        Passionate about crafting seamless digital experiences through clean code and modern design. Whether it's backend logic, frontend interfaces — I build tools that work beautifully and scale smoothly.
         </p>
         <Button text="Download My Resume" to="#" className="max-w-fit cvbutton" />
       </div>

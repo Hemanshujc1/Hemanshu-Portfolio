@@ -6,24 +6,22 @@ const slides = [
   {
     title: "Online Baithak",
     description:
-      "Another Web3 initiative aiming to revolutionize the decentralized world.",
+      "Engineered a full‑stack video‑conferencing platform modeled on Google Meet/Zoom, using Next.js, Node.js, TypeScript, and Tailwind CSS. Integrated GetStream.io for real‑time meeting rooms and Clerk for secure user authentication. A hands‑on project that sharpened my skills in real‑time communication and auth flows.",
     image: "/onlinebaithak.png",
-    tech: ["web3", "solidity"],
+    tech: ["TypeScript","Clerk","GetStream.io"],
     link: "https://online-baithak.vercel.app",
   },
   {
     title: "Your Global Tax Buddy",
-    description:
-      "Web3 Startup Accelerator, Both In Finance And Human Resource. They Look For Web3 Contributors Who Want To Make An Impact In The Web3 Space",
-    image: "/yourgtb.png",
-    tech: ["node/react"],
+    description:"Developed a fully responsive Next.js website for a tax‑outsourcing startup, collaborating closely with their team to bring their brand online. Implemented end‑to‑end features—from sleek UI layouts to a dynamic Web3Forms contact form—boosting the company’s digital visibility and lead capture.",    image: "/yourgtb.png",
+    tech: ["Next.js","JavaScript","Web3Forms"],
     link: "/",
   },
   {
     title: "Personal Portfolio",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati hic laboriosam praesentium consequatur doloribus corrupti fugit rem sed numquam quod.", 
+    description: "A modern portfolio built from the ground up with React, Vite, Node.js, JavaScript, and Tailwind CSS. Showcases my projects, skills, and contact info—complete with a dynamic Web3Forms contact form so visitors can reach out instantly.", 
     image: "/Portfolio.png",
-    tech: ["node/react"],
+    tech: ["React","Node.js", "Tailwind CSS"],
     link: "/",
   },
 ];
@@ -45,9 +43,9 @@ const ShowRoom = () => {
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold text-white">Work</h2>
           <div className="w-24 h-1 bg-[#8245ec] mx-auto mt-2"></div>
-          {/* <p className="text-gray-400 mt-4 text-lg font-semibold">
-      A collection of my Projects and expertise honed through various projects and experiences
-      </p> */}
+          <p className="text-gray-400 mt-4 text-lg font-semibold">
+          Showcasing my journey as a developer, all built with love.
+          </p>
         </div>
       <div className="relative w-full h-full flex items-center justify-center bg-black overflow-hidden rounded-xl shadow-[0_0_10px_10px_rgba(130,69,236,0.3)] my-10 p-4">
         {/* Background blurred */}

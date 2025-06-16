@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useWeb3Forms from "@web3forms/react";
-import "./Contact.css"
+import "./Contact.css";
 const Contact = () => {
   const {
     register,
@@ -34,18 +34,17 @@ const Contact = () => {
     <section className="relative min-h-screen flex flex-col overflow-y-auto py-20 mt-24">
       <div className="flex flex-col lg:flex-row w-full h-[100vh] contact-page">
         {/* Left Section */}
-       
+
         <div className="w-full lg:w-1/2 text-white text-center flex flex-col justify-center items-center gap-4 p-6">
-      
           <div className="mt-3 max-w-xl ">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
               Contact Me
             </h2>
             <p className="mt-4 text-sm md:text-base">
-              Get in touch with us today to discover tailored accounting
-              solutions that fit your business needs. Our expert team is
-              dedicated to providing accurate, reliable, and efficient
-              services to help you streamline your financial processes.
+              Whether you’re looking to collaborate on a project, have a
+              question, or just want to connect — I’d love to hear from you.
+              Feel free to reach out via email or WhatsApp, or simply fill out
+              the form, and I’ll get back to you as soon as possible.
             </p>
           </div>
           <div className="flex flex-col gap-4">
@@ -76,7 +75,6 @@ const Contact = () => {
               <p className="text-sm sm:text-base">+91 7021552408</p>
             </a>
           </div>
-
         </div>
 
         {/* Divider */}
@@ -213,7 +211,11 @@ const Contact = () => {
                 value="Message Me"
                 className="px-6 py-2 rounded-md text-white font-bold hover:bg-gray-200 transition-all bg-ambient shadow-ambient"
               />
-              {result && <div className="text-sm font-extrabold text-white transition-opacity duration-300 ease-in">{result}</div>}
+              {result && (
+                <div className="text-sm font-extrabold text-white transition-opacity duration-300 ease-in">
+                  {result}
+                </div>
+              )}
             </div>
           </form>
         </div>
