@@ -1,24 +1,23 @@
 // Skills Section Logo's
-import htmlLogo from '../Hemanshu Portfolio/src/assets/tech_logo/html.png';
-import cssLogo from '../Hemanshu Portfolio/src/assets/tech_logo/css.png';
-import javascriptLogo from '../Hemanshu Portfolio/src/assets/tech_logo/javascript.png';
-import reactjsLogo from '../Hemanshu Portfolio/src/assets/tech_logo/reactjs.png';
-import nextjsLogo from '../Hemanshu Portfolio/src/assets/tech_logo/nextjs.png';
-import tailwindcssLogo from '../Hemanshu Portfolio/src/assets/tech_logo/tailwindcss.png';
-import gsapLogo from '../Hemanshu Portfolio/src/assets/tech_logo/gsap.png';
-import nodejsLogo from '../Hemanshu Portfolio/src/assets/tech_logo/nodejs.png';
-import expressjsLogo from '../Hemanshu Portfolio/src/assets/tech_logo/express.png';
-import mongodbLogo from '../Hemanshu Portfolio/src/assets/tech_logo/mongodb.png';
-import cLogo from '../Hemanshu Portfolio/src/assets/tech_logo/c.png';
-import cppLogo from '../Hemanshu Portfolio/src/assets/tech_logo/cpp.png';
-import pythonLogo from '../Hemanshu Portfolio/src/assets/tech_logo/python.png';
-import typescriptLogo from '../Hemanshu Portfolio/src/assets/tech_logo/typescript.png';
-import gitLogo from '../Hemanshu Portfolio/src/assets/tech_logo/git.png';
-import githubLogo from '../Hemanshu Portfolio/src/assets/tech_logo/github.png';
-import vscodeLogo from '../Hemanshu Portfolio/src/assets/tech_logo/vscode.png';
-import postmanLogo from '../Hemanshu Portfolio/src/assets/tech_logo/postman.png';
-import vercelLogo from '../Hemanshu Portfolio/src/assets/tech_logo/vercel.png';
-
+import htmlLogo from './src/assets/tech_logo/html.png';
+import cssLogo from './src/assets/tech_logo/css.png';
+import javascriptLogo from './src/assets/tech_logo/javascript.png';
+import reactjsLogo from './src/assets/tech_logo/reactjs.png';
+import nextjsLogo from './src/assets/tech_logo/nextjs.png';
+import tailwindcssLogo from './src/assets/tech_logo/tailwindcss.png';
+import gsapLogo from './src/assets/tech_logo/gsap.png';
+import nodejsLogo from './src/assets/tech_logo/nodejs.png';
+import expressjsLogo from './src/assets/tech_logo/express.png';
+import mongodbLogo from './src/assets/tech_logo/mongodb.png';
+import cLogo from './src/assets/tech_logo/c.png';
+import cppLogo from './src/assets/tech_logo/cpp.png';
+import pythonLogo from './src/assets/tech_logo/python.png';
+import typescriptLogo from './src/assets/tech_logo/typescript.png';
+import gitLogo from './src/assets/tech_logo/git.png';
+import githubLogo from './src/assets/tech_logo/github.png';
+import vscodeLogo from '../rc/assets/tech_logo/vscode.png';
+import postmanLogo from './src/assets/tech_logo/postman.png';
+import vercelLogo from './src/assets/tech_logo/vercel.png';
 
 
 
