@@ -37,14 +37,14 @@ const InitialPage = ({ onFinish }) => {
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff22_1px,#00091d_1px)] bg-[size:50px_50px]"></div>
 
       {/* Content */}
-      <div className="flex flex-col items-start text-6xl md:text-7xl font-bold px-8 py-6 gap-4 text-white z-10">
+      <div className="flex flex-col items-start text-4xl md:text-6xl font-bold px-8 py-6 gap-4 text-white z-10">
         <h3 className="animate-fadeInUp">Hold up</h3>
         <h3 className="animate-fadeInUp delay-200">Coding magic loading! 🚀</h3>
         <h3 className="animate-fadeInUp delay-400">Almost there!</h3>
       </div>
 
       {/* Progress */}
-      <div className="text-6xl font-extrabold absolute bottom-[10%] right-[5%] px-6 py-2 text-white animate-bounceIn">
+      <div className="text-5xl md:text-6xl font-extrabold absolute bottom-[8%] right-[4%] px-6 py-2 text-white animate-bounceIn">
         {progress}%
       </div>
     </div>
