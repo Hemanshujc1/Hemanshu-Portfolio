@@ -20,7 +20,7 @@ const projects = [
     title: "Personal Portfolio",
     description:
       "A virtual collaboration platform designed for productive online discussions and community meetings.",
-    image: "/Portfolio ss.png",
+    image: "/Portfolio.png",
     links: [
       { label: "Preview", icon: <ArrowLeft />, url: "/" },
       { label: "GitHub", icon: "/icons8-github.svg", url: "/" }, 
