@@ -1,6 +1,5 @@
 import React from "react";
 import SocialContactCard from "../SocialContactCard/SocialContactCard";
-import "./Contactsection.css"
 const Contactsection = () => {
   
   return (
