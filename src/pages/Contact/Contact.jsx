@@ -1,0 +1,225 @@
+"use client";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import useWeb3Forms from "@web3forms/react";
+import "./Contact.css"
+const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const [result, setResult] = useState(null);
+
+  const { submit: onSubmit } = useWeb3Forms({
+    access_key: "f7623f02-5bc7-4879-ab45-91c6231ca35c",
+    settings: {
+      from_name: "HEMANSHU PORTFOLIO",
+      subject: "New Message from my Portfolio Website",
+    },
+    onSuccess: (msg) => {
+      setResult(msg);
+      reset();
+      setTimeout(() => setResult(null), 2000); // Hide message after 4s
+    },
+    onError: (msg) => {
+      setResult(msg);
+      setTimeout(() => setResult(null), 2000);
+    },
+  });
+
+  return (
+    <section className="relative min-h-screen flex flex-col overflow-y-auto py-20 mt-24">
+      <div className="flex flex-col lg:flex-row w-full h-[100vh] contact-page">
+        {/* Left Section */}
+       
+        <div className="w-full lg:w-1/2 text-white text-center flex flex-col justify-center items-center gap-4 p-6">
+      
+          <div className="mt-3 max-w-xl ">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
+              Contact Me
+            </h2>
+            <p className="mt-4 text-sm md:text-base">
+              Get in touch with us today to discover tailored accounting
+              solutions that fit your business needs. Our expert team is
+              dedicated to providing accurate, reliable, and efficient
+              services to help you streamline your financial processes.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <a
+              href="mailto:hemanshuwork26@gmail.com"
+              className="flex items-center justify-center gap-3"
+            >
+              <img
+                src="/icons8-gmail.svg"
+                alt="Gmail"
+                width={34}
+                height={34}
+                className="rounded-md cursor-pointer"
+              />
+              <p className="text-sm sm:text-base">hemanshuwork26@gmail.com</p>
+            </a>
+            <a
+              href="https://wa.me/917021552408?text=Hello!%20Hemanshu%20I%20just%20came%20across%20your%20portfolio"
+              className="flex items-center justify-center gap-3"
+            >
+              <img
+                src="/icons8-whatsapp.svg"
+                alt="whatsapp"
+                width={34}
+                height={34}
+                className="rounded-md cursor-pointer"
+              />
+              <p className="text-sm sm:text-base">+91 7021552408</p>
+            </a>
+          </div>
+
+        </div>
+
+        {/* Divider */}
+        {/* <div className="hidden lg:block h-auto w-[2px] bg-red-600"></div> */}
+
+        {/* Right Section - Form */}
+        <div className="w-full lg:w-1/2 flex justify-center items-center p-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full max-w-3xl flex flex-col items-center gap-4 text-white"
+          >
+            {/* Name Fields */}
+            <div className="flex flex-col md:flex-row gap-4 w-full">
+              <div className="flex flex-col w-full">
+                {errors.FirstName && (
+                  <span className="text-red-500 text-xs">
+                    {errors.FirstName.message}
+                  </span>
+                )}
+                <input
+                  {...register("FirstName", {
+                    required: "First name is required",
+                    minLength: { value: 2, message: "Min length is 2" },
+                    maxLength: { value: 20, message: "Max length is 20" },
+                  })}
+                  type="text"
+                  placeholder="First Name"
+                  className="p-3 rounded-full bg-white text-black shadow-md text-center"
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                {errors.LastName && (
+                  <span className="text-red-500 text-xs">
+                    {errors.LastName.message}
+                  </span>
+                )}
+                <input
+                  {...register("LastName", {
+                    required: "Last name is required",
+                    minLength: { value: 2, message: "Min length is 2" },
+                    maxLength: { value: 20, message: "Max length is 20" },
+                  })}
+                  type="text"
+                  placeholder="Last Name"
+                  className="p-3 rounded-full bg-white text-black shadow-md text-center"
+                />
+              </div>
+            </div>
+
+            {/* Contact Fields */}
+            <div className="flex flex-col md:flex-row gap-4 w-full">
+              <div className="flex flex-col w-full">
+                {errors.Email && (
+                  <span className="text-red-500 text-xs">
+                    {errors.Email.message}
+                  </span>
+                )}
+                <input
+                  {...register("Email", {
+                    required: "Email is required",
+                  })}
+                  type="email"
+                  placeholder="Email"
+                  className="p-3 rounded-full bg-white text-black shadow-md text-center"
+                />
+              </div>
+              <div className="flex flex-col w-full">
+                {errors.Number && (
+                  <span className="text-red-500 text-xs">
+                    {errors.Number.message}
+                  </span>
+                )}
+                <input
+                  {...register("Number", {
+                    required: "Mobile number is required",
+                    minLength: {
+                      value: 10,
+                      message: "Min length is 10",
+                    },
+                    maxLength: {
+                      value: 14,
+                      message: "Max length is 14",
+                    },
+                  })}
+                  type="tel"
+                  placeholder="Mobile Number"
+                  className="p-3 rounded-full bg-white text-black shadow-md text-center"
+                />
+              </div>
+            </div>
+
+            {/* Subject */}
+            <div className="w-full flex flex-col">
+              {errors.Subject && (
+                <span className="text-red-500 text-xs">
+                  {errors.Subject.message}
+                </span>
+              )}
+              <input
+                {...register("Subject", {
+                  required: "Subject is required",
+                  minLength: { value: 5, message: "Min length is 5" },
+                  maxLength: { value: 50, message: "Max length is 50" },
+                })}
+                type="text"
+                placeholder="Subject"
+                className="p-3 rounded-full bg-white text-black shadow-md text-center w-full"
+              />
+            </div>
+
+            {/* Message */}
+            <div className="w-full flex flex-col">
+              {errors.Message && (
+                <span className="text-red-500 text-xs">
+                  {errors.Message.message}
+                </span>
+              )}
+              <textarea
+                {...register("Message", {
+                  required: "Message is required",
+                  minLength: { value: 20, message: "Min length is 20" },
+                  maxLength: { value: 1000, message: "Max length is 1000" },
+                })}
+                placeholder="Message"
+                rows={5}
+                className="p-4 rounded-md bg-white text-black shadow-md resize-none"
+              />
+            </div>
+
+            {/* Submit */}
+            <div className="flex flex-col items-center gap-4 mt-3">
+              <input
+                type="submit"
+                value="Message Me"
+                className="px-6 py-2 rounded-md text-white font-bold hover:bg-gray-200 transition-all bg-ambient shadow-ambient"
+              />
+              {result && <div className="text-sm font-extrabold text-white transition-opacity duration-300 ease-in">{result}</div>}
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;

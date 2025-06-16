@@ -1,0 +1,25 @@
+.social-box-content {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 5px;
+    width: 25vw;
+    height: 15vh;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+
+@media (max-width: 640px) {
+    .social-box-content{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        gap: 10px;
+    }
+    .social-box-content{
+        font-size:medium;
+    }
+}

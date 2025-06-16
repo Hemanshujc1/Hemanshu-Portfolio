@@ -1,0 +1,19 @@
+
+@media (max-width: 640px) {
+    .showroomtitle{
+        font-size: 18px;
+    }
+    .showroomdes{
+        font-size: 12px;
+    }
+    .showroomtech{
+        font-size: 11px;
+    }
+    .gotobutton{
+        font-size: 16px;
+    }
+    .arrowbutton{
+        height: 40px;
+        width: 40px;
+    }
+}

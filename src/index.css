@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: black;
+
+}
+
+@media (max-width: 640px) {
+  .heading{
+    font-size: 38px;
+  }
+  .logo{
+    font-size: 18px;
+  }
+  .footer{
+    font-size: 18px;
+  }
+  .mobilenav{
+    font-size: 28px;
+  }
+}
+
