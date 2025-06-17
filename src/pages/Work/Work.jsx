@@ -33,7 +33,7 @@ const projects = [
       {
         label: "Preview",
         icon: <ArrowLeft />,
-        url: "https://hemanshu-portfolio-six.vercel.app",
+        url: "https://hemanshujc-portfolio.vercel.app",
       },
       {
         label: "GitHub",

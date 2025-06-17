@@ -25,7 +25,7 @@ const slides = [
       "A modern portfolio built with React, Vite, Node.js, and Tailwind CSS. Showcases my projects, skills, and contact info—complete with a dynamic contact form.",
     image: "/Portfolio.png",
     tech: ["React", "Node.js", "Tailwind CSS"],
-    link: "https://hemanshu-portfolio-six.vercel.app/",
+    link: "https://hemanshujc-portfolio.vercel.app",
   },
 ];
 
