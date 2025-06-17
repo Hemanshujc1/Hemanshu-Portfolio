@@ -11,7 +11,6 @@ import Experience from "./pages/Experience/Experience";
 import Work from "./pages/Work/Work";
 import Topofpage from "./components/Topofpage/Topofpage";
 
-
 function App() {
   const [showInitial, setShowInitial] = useState(true);
   return (

@@ -14,8 +14,8 @@ const InitialPage = ({ onFinish }) => {
             setIsExiting(true); // Trigger exit animation
             setTimeout(() => {
               if (onFinish) onFinish();
-            }, 1000); // Match exit animation duration
-          }, 300); // Small delay after reaching 100
+            }, 800); // Duration of the exit animation
+          }, 250);
           return 100;
         }
         return next;
@@ -27,10 +27,10 @@ const InitialPage = ({ onFinish }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-[1000ms] ease-in-out ${
+      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-[800ms] ease-in-out ${
         isExiting
-          ? "opacity-0 scale-75 rotate-3 pointer-events-none"
-          : "opacity-100 scale-100"
+          ? "opacity-0 translate-y-8 pointer-events-none"
+          : "opacity-100 translate-y-0"
       }`}
     >
       {/* Background */}

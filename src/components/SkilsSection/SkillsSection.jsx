@@ -1,18 +1,15 @@
 import React from "react";
-import Tilt from "react-parallax-tilt";
 import { SkillsInfo } from "../../../constants";
-import "./SkillsSection.css"
+import "./SkillsSection.css";
 
 const SkillsSection = () => (
-  <section
-    id="skills"
-    className="px-[12vw] md:px-[7vw] lg:px-[20vw]"
-  >
+  <section id="skills" className="px-[12vw] md:px-[7vw] lg:px-[20vw]">
     <div className="text-center mb-8">
       <h2 className="text-3xl sm:text-4xl font-bold text-white">SKILLS</h2>
       <div className="w-24 h-1 bg-[#8245ec] mx-auto mt-2"></div>
       <p className="text-gray-400 mt-4 text-lg font-semibold">
-      A collection of my technical skills and expertise honed through various projects and experiences
+        A collection of my technical skills and expertise honed through various
+        projects and experiences
       </p>
     </div>
 
@@ -27,33 +24,23 @@ const SkillsSection = () => (
             {category.title}
           </h3>
 
-          <Tilt
-            key={category.title}
-            tiltMaxAngleX={20}
-            tiltMaxAngleY={20}
-            perspective={200}
-            scale={1.05}
-            transitionSpeed={1000}
-            gyroscope={true}
-          >
-            <div className="flex flex-wrap gap-5 skillgrp lg:align-middle items-center justify-center">
-              {category.skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  className="skillbox flex flex-wrap w-[145px] items-center justify-center space-x-1 bg-transparent border-2 border-gray-700 rounded-2xl py-1 px-1 sm:py-1.5 sm:px-1.5 text-center"
-                >
-                  <img
-                    src={skill.logo}
-                    alt={`${skill.name} logo`}
-                    className="w-4 h-4 sm:w-6 sm:h-6"
-                  />
-                  <span className="text-xs sm:text-sm text-gray-300">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </Tilt>
+          <div className="flex flex-wrap gap-5 skillgrp lg:align-middle items-center justify-center">
+            {category.skills.map((skill) => (
+              <div
+                key={skill.name}
+                className="skillbox flex flex-wrap w-[145px] items-center justify-center space-x-1 bg-transparent border-2 border-gray-700 rounded-2xl py-1 px-1 sm:py-1.5 sm:px-1.5 text-center tilt-hover"
+              >
+                <img
+                  src={skill.logo}
+                  alt={`${skill.name} logo`}
+                  className="w-4 h-4 sm:w-6 sm:h-6"
+                />
+                <span className="text-xs sm:text-sm text-gray-300">
+                  {skill.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       ))}
     </div>

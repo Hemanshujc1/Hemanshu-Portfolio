@@ -1,8 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import useWeb3Forms from "@web3forms/react";
+import { motion, useInView } from "framer-motion";
 import "./Contact.css";
+
 const Contact = () => {
   const {
     register,
@@ -22,7 +24,7 @@ const Contact = () => {
     onSuccess: (msg) => {
       setResult(msg);
       reset();
-      setTimeout(() => setResult(null), 2000); // Hide message after 4s
+      setTimeout(() => setResult(null), 2000);
     },
     onError: (msg) => {
       setResult(msg);
@@ -30,13 +32,28 @@ const Contact = () => {
     },
   });
 
-  return (
-    <section className="relative min-h-screen flex flex-col overflow-y-auto py-20 mt-24">
-      <div className="flex flex-col lg:flex-row w-full h-[100vh] contact-page">
-        {/* Left Section */}
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true });
 
-        <div className="w-full lg:w-1/2 text-white text-center flex flex-col justify-center items-center gap-4 p-6">
-          <div className="mt-3 max-w-xl ">
+  return (
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen flex flex-col overflow-y-auto py-20 mt-24"
+    >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col lg:flex-row w-full h-[100vh] contact-page"
+      >
+        {/* Left Section */}
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={isInView ? { x: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="w-full lg:w-1/2 text-white text-center flex flex-col justify-center items-center gap-4 p-6"
+        >
+          <div className="mt-3 max-w-xl">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
               Contact Me
             </h2>
@@ -75,13 +92,15 @@ const Contact = () => {
               <p className="text-sm sm:text-base">+91 7021552408</p>
             </a>
           </div>
-        </div>
-
-        {/* Divider */}
-        {/* <div className="hidden lg:block h-auto w-[2px] bg-red-600"></div> */}
+        </motion.div>
 
         {/* Right Section - Form */}
-        <div className="w-full lg:w-1/2 flex justify-center items-center p-4">
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          animate={isInView ? { x: 0, opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="w-full lg:w-1/2 flex justify-center items-center p-4"
+        >
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-full max-w-3xl flex flex-col items-center gap-4 text-white"
@@ -150,14 +169,8 @@ const Contact = () => {
                 <input
                   {...register("Number", {
                     required: "Mobile number is required",
-                    minLength: {
-                      value: 10,
-                      message: "Min length is 10",
-                    },
-                    maxLength: {
-                      value: 14,
-                      message: "Max length is 14",
-                    },
+                    minLength: { value: 10, message: "Min length is 10" },
+                    maxLength: { value: 14, message: "Max length is 14" },
                   })}
                   type="tel"
                   placeholder="Mobile Number"
@@ -218,8 +231,8 @@ const Contact = () => {
               )}
             </div>
           </form>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

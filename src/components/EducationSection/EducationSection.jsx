@@ -5,14 +5,15 @@ const Educationdata = [
   {
     logo: "/IIITT Logo.png",
     alt: "IIIT-T logo",
-    company: "Indian Institute of Information Technology Tiruchirappalli",
+    company: "IIIT Tiruchirappalli",
     duration: "2022–2026",
-    department: "B.Tech. in Electronics & Communication",
+    department: "B.Tech. in ECE",
     result: "CGPA: 8.54",
     descriptionPoints: [
       "Pursuing core subjects like Digital Electronics, Signal Processing, and Embedded Systems, with additional focus on web development and DSA.",
       "Participated in multiple tech clubs and student bodies, balancing academics with leadership roles and real-world projects.",
     ],
+    companylink:"https://iiitt.ac.in/"
   },
   {
     logo: "/rmc-logo.png",
@@ -24,7 +25,8 @@ const Educationdata = [
     descriptionPoints: [
       "Studied core science subjects with a focus on Physics, Chemistry, and Mathematics.",
       "Prepared for competitive exams including JEE.",
-    ]
+    ],
+    companylink:"https://rmc.edu.in/",
     
   },
   {
@@ -38,6 +40,7 @@ const Educationdata = [
       "Consistently performed at the top of the class and maintained academic excellence across all subjects.",
       "Actively participated in Olympiads and quiz competitions.",
     ],
+    companylink:"https://www.narayanaschools.in/",
     
   },
 ];

@@ -1,13 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Gmailicon from "../Gmailicon/Gmailicon";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
 import "./MobileNav.css";
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
+  const socialRef = useRef([]);
+  const menuRef = useRef([]);
+
+  useEffect(() => {
+    if (open) {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+      tl.fromTo(
+        socialRef.current,
+        { x: -100, opacity: 0 },
+        { x: 0, opacity: 1, stagger: 0.1, duration: 0.5 }
+      );
+
+      tl.fromTo(
+        menuRef.current,
+        { x: 100, opacity: 0 },
+        { x: 0, opacity: 1, stagger: 0.1, duration: 0.5 },
+        "-=0.4"
+      );
+    }
+  }, [open]);
 
   const socialLinks = [
     {
@@ -57,6 +79,7 @@ const MobileNav = () => {
           {open ? <RxCross1 /> : <GiHamburgerMenu />}
         </button>
       </div>
+
       {/* Fullscreen Navigation */}
       <div
         className={`fullscreennav fixed inset-0 z-40 flex transition-transform duration-500 ${
@@ -71,7 +94,8 @@ const MobileNav = () => {
           {socialLinks.map(({ label, icon, bg, link }, index) => (
             <div
               key={index}
-              className={`socialnavgrp w-1/4 h-full ${bg} flex items-center justify-center`}
+              ref={(el) => (socialRef.current[index] = el)}
+              className={`socialnavgrp w-1/4 h-full ${bg} flex items-center justify-center opacity-0`}
             >
               <a
                 href={link}
@@ -91,28 +115,23 @@ const MobileNav = () => {
         </div>
 
         {/* Menu Items Section */}
-        {/* <div className="menunav w-1/2 h-full flex flex-col justify-center items-end px-10 bg-gradient-to-b from-black to-gray-900 overflow-y-auto"> */}
         <div className="fixed inset-0 -z-10 h-full w-full items-center px-5 py-24 bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:50px_50px]"></div>
 
         <div className="menunav w-1/2 h-full flex flex-col justify-center items-center md:items-end px-10 bg-radial-gradient-to-b from-black to-gray-900 bg-[size:50px_50px] overflow-y-auto text-center">
-
           {menuItems.map(({ menu, navlink }, index) => (
             <div
               key={index}
-              className="menunavlink group py-4 w-full max-w-[300px] text-right"
+              ref={(el) => (menuRef.current[index] = el)}
+              className="menunavlink group py-4 w-full max-w-[300px] text-right opacity-0"
             >
               <Link
                 to={navlink}
                 className="flex items-center justify-end space-x-4"
                 onClick={() => setOpen(false)}
               >
-                {/* <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-x-2 text-5xl">
-                  👉
-                </span> */}
                 <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:-translate-x-2 text-5xl hidden md:inline">
                   👉
                 </span>
-
                 <span className="text-4xl lg:text-5xl font-bold tracking-wider transition-colors duration-300 group-hover:text-purple-400">
                   {menu}
                 </span>

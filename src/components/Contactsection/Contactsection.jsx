@@ -5,14 +5,14 @@ const Contactsection = () => {
   return (
     <section className="overflow-hidden">
       
-      <div className="text-center py-6 mb-8 transform rotate-[6deg]">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white">
+      <div className="text-center py-6 mb-8 ">
+        <h2 className="text-3xl sm:text-4xl font-bold text-white transform rotate-[6deg]">
           Connect With Me
         </h2>
-        <div className="w-24 h-1 bg-[#8245ec] mx-auto mt-2"></div>
-        {/* <p className="text-gray-400 mt-4 text-lg font-semibold">
-      A collection of my technical skills and expertise honed through various projects and experiences
-      </p> */}
+        <div className="w-24 h-1 bg-[#8245ec] mx-auto mt-2 transform rotate-[6deg]"></div>
+         <p className="text-gray-400 mt-4 text-lg font-semibold">
+  Got a project, idea, or just want to say hi? I'm just a message away.
+      </p> 
       </div>
       <div className="social flex flex-row justify-evenly w-full">
      

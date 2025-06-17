@@ -1,5 +1,5 @@
 @media (max-width: 640px) {
-    .aboutpara {
-        font-size: 15px;
+    .aboutpara p{
+        font-size: 16px;
     }
 }

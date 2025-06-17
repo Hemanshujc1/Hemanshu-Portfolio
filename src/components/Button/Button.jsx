@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Button = ({ text, link }) => {
+const Button = ({ text, link, className = "" }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -13,16 +13,15 @@ const Button = ({ text, link }) => {
   };
 
   return (
-    <div className="flex flex-wrap rounded-xl bg-ambient shadow-ambient">
+    <>
       <button
         onClick={handleClick}
-        className="rounded-xl bg-[#8245ec7b] border border-white p-3 max-w-fit"
+        className={`bg-[#8245ec7b] border border-white text-white bg-ambient shadow-ambient ${className}`}
       >
         {text}
       </button>
-    </div>
+    </>
   );
 };
-
 
 export default Button;

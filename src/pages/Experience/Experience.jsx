@@ -14,7 +14,8 @@ const experienceData = [
       "Built a responsive website using Next.js, Tailwind CSS, to deliver a sleek and accessible UI across devices.",
       "Integrated Web3Forms for seamless lead generation and user contact handling.",
       "Delivered the full frontend architecture, optimizing performance and SEO for a fintech startup."
-    ]
+    ],
+    companylink:"https://www.yourglobaltaxbuddy.in"
   },
   {
     logo: "/IIITT Logo.png",
@@ -25,7 +26,8 @@ const experienceData = [
     descriptionPoints: [
       "Collaborated with placement officers and company representatives to facilitate campus recruitment activities.",
       "Coordinated student engagement and managed logistics for pre-placement talks, internships, and interviews."
-    ]
+    ],
+     companylink:"https://iiitt.ac.in/"
     
   },
   {
@@ -37,8 +39,8 @@ const experienceData = [
     descriptionPoints: [
       "Led the Entrepreneurship Cell in organizing workshops, speaker sessions, and startup networking events.",
       "Managed a team of coordinators to execute E-Cell initiatives and elevate campus startup culture."
-    ]
-    
+    ],
+     companylink:"https://iiitt.ac.in/",
   },
   
   {
@@ -50,8 +52,8 @@ const experienceData = [
     descriptionPoints: [
       "Promoted IIT Bombay’s E-Cell events and Ideation competitions across campus.",
       "Acted as a liaison between the central E-Cell team and student participants to ensure smooth execution."
-    ]
-    
+    ],
+    companylink:"https://www.ecell.in",
   },
   {
     logo: "/IIITT Logo.png",
@@ -62,7 +64,8 @@ const experienceData = [
     descriptionPoints: [
       "Contributed to organizing cultural and technical events by managing event logistics and coordination.",
       "Assisted in crowd handling, registrations, and event execution during institute fests."
-    ]    
+    ],
+     companylink:"https://iiitt.ac.in/",
   },
   {
     logo: "/IIITT Logo.png",
@@ -73,7 +76,8 @@ const experienceData = [
     descriptionPoints: [
       "Represented student feedback to improve food quality and hygiene in the mess facilities.",
       "Collaborated with administration and vendors to implement menu changes and monitor services."
-    ]    
+    ],
+     companylink:"https://iiitt.ac.in/",
   },
 ];
 
