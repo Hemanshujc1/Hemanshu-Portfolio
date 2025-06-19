@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeadingPart from "../HeadingPart/HeadingPart";
 import Button from "../Button/Button";
-import "./MoreAboutMe.css"
+import "./MoreAboutMe.css";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -95,14 +95,12 @@ const MoreAboutMe = () => {
         ))}
 
         <div className="max-w-fit" ref={buttonRef}>
-        <a
-            href="https://drive.google.com/file/d/1lwyjVHxzebnr0IH6dCEWmVkbtQlmia7J/view?usp=sharing"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-          <Button text="Download My Resume" className="p-2 rounded-xl" />
-       </a>
-       </div>
+          <Button
+            text="Download My Resume"
+            link="https://drive.google.com/file/d/1lwyjVHxzebnr0IH6dCEWmVkbtQlmia7J/view?usp=sharing"
+            className="p-2 rounded-xl"
+          />
+        </div>
       </div>
     </section>
   );
