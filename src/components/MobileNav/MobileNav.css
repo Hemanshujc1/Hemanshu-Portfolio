@@ -1,4 +1,7 @@
-@media (max-width: 710px) {
+@media (max-width: 1024px) {
+  .mobilenavigation{
+    overflow: hidden;
+  }
     .fullscreennav {
       flex-direction: column;
       height: 100vh;

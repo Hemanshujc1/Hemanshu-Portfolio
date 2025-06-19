@@ -67,7 +67,7 @@ const MobileNav = () => {
   ];
 
   return (
-    <div className="">
+    <div className="mobilenavigation">
       {/* Hamburger Button */}
       <div className="">
         <button
@@ -121,7 +121,7 @@ const MobileNav = () => {
             <div
               key={index}
               ref={(el) => (menuRef.current[index] = el)}
-              className="menunavlink group py-2 w-full max-w-[300px] text-right opacity-0"
+              className="menunavlink group py-1 w-full max-w-[300px] text-right opacity-0"
             >
               <Link
                 to={navlink}
