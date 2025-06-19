@@ -101,20 +101,18 @@ const HeroSection = () => {
           </h3>
         </div>
 
-        <p
-          ref={paraRef}
-          className="text-lg mb-6 font-extrabold"
-        >
-          Passionate about crafting seamless digital experiences through clean code and modern design.
-          Whether it's backend logic, frontend interfaces — I build tools that work beautifully and scale smoothly.
+        <p ref={paraRef} className="text-lg mb-6 font-extrabold">
+          Passionate about crafting seamless digital experiences through clean
+          code and modern design. Whether it's backend logic, frontend
+          interfaces — I build tools that work beautifully and scale smoothly.
         </p>
 
         <div ref={buttonRef}>
-          <Button
-            text="Download My Resume"
-            to="#"
-            className="max-w-fit rounded-xl px-2 py-2"
-          />
+            <Button
+              text="Download My Resume"
+              link="https://drive.google.com/file/d/1lwyjVHxzebnr0IH6dCEWmVkbtQlmia7J/view?usp=sharing"
+              className="max-w-fit rounded-xl px-2 py-2"
+            />
         </div>
       </div>
 

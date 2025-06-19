@@ -95,8 +95,14 @@ const MoreAboutMe = () => {
         ))}
 
         <div className="max-w-fit" ref={buttonRef}>
-          <Button text="Download My Resume" to="#" className="p-2 rounded-xl" />
-        </div>
+        <a
+            href="https://drive.google.com/file/d/1lwyjVHxzebnr0IH6dCEWmVkbtQlmia7J/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+          <Button text="Download My Resume" className="p-2 rounded-xl" />
+       </a>
+       </div>
       </div>
     </section>
   );

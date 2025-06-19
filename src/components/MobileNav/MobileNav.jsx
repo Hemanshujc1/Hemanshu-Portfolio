@@ -59,7 +59,6 @@ const MobileNav = () => {
   ];
 
   const menuItems = [
-    { menu: "RESUME", navlink: "/" },
     { menu: "HOME", navlink: "/" },
     { menu: "ABOUT", navlink: "/About" },
     { menu: "WORK", navlink: "/Work" },

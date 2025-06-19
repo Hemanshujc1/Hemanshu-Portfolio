@@ -74,12 +74,13 @@ const ProjectCard = ({ title, description, image, links, reverse }) => {
               rel="noopener noreferrer"
               className="workbutton flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-purple-800 text-white text-sm font-medium shadow-[0_0_10px_10px_rgba(130,69,236,0.4)] hover:shadow-[0_20px_30px_rgba(130,69,236,0.6)] transition duration-300 ease-in-out"
             >
-              {link.label}
+              
               {typeof link.icon === "string" ? (
                 <img src={link.icon} alt="" className="w-7 h-7" />
               ) : (
                 link.icon
               )}
+              {link.label} 
             </a>
           ))}
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import { ExternalLink } from 'lucide-react';
 import Contactsection from "../../components/Contactsection/Contactsection";
 import HeadingPart from "../../components/HeadingPart/HeadingPart";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
@@ -13,7 +13,7 @@ const projects = [
     links: [
       {
         label: "Preview",
-        icon: <ArrowRight />,
+        icon: <ExternalLink />,
         url: "https://online-baithak.vercel.app",
       },
       {
@@ -32,7 +32,7 @@ const projects = [
     links: [
       {
         label: "Preview",
-        icon: <ArrowLeft />,
+        icon: <ExternalLink />,
         url: "https://hemanshujc-portfolio.vercel.app",
       },
       {
@@ -51,7 +51,7 @@ const projects = [
     links: [
       {
         label: "Preview",
-        icon: <ArrowRight />,
+        icon: <ExternalLink />,
         url: "https://www.yourglobaltaxbuddy.in",
       },
       {
