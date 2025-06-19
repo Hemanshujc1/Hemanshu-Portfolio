@@ -20,7 +20,7 @@ const slides = [
     link: "https://www.yourglobaltaxbuddy.in/",
   },
   {
-    title: "Personal Portfolio",
+    title: "Hemanshu Portfolio",
     description:
       "A modern portfolio built with React, Vite, Node.js, and Tailwind CSS. Showcases my projects, skills, and contact info—complete with a dynamic contact form.",
     image: "/Portfolio.png",

@@ -25,7 +25,7 @@ const projects = [
     reverse: true,
   },
   {
-    title: "Personal Portfolio",
+    title: "Hemanshu Portfolio",
     description:
       "A fully responsive developer portfolio built with React, Vite, Node.js & Tailwind CSS. Showcases my work, skills, and contact form (powered by Web3Forms) in a modern, dark-themed UI.",
     image: "/Portfolio.png",
@@ -53,11 +53,6 @@ const projects = [
         label: "Preview",
         icon: <ExternalLink />,
         url: "https://www.yourglobaltaxbuddy.in",
-      },
-      {
-        label: "GitHub",
-        icon: "/icons8-github.svg",
-        url: "https://github.com/Hemanshujc1/Your-Global-Tax-Buddy",
       },
     ],
     reverse: true,
