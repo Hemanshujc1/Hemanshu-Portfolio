@@ -1,40 +1,16 @@
-/* Mobile base styles */
-.handicon {
-  font-size: 2rem;
-  line-height: 2.25rem;
-}
-
-.labeltext,
-.menutext {
-  font-size: 36px;
-  line-height: 1.2;
-}
-
-.socialicon {
-  font-size: 44px;
-}
-
-/* Hover (optional polish) */
-.sociallinks:hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  transition: background-color 0.3s ease;
-}
-
-/* Tablet & Desktop Overrides */
-@media (min-width: 600px) {
-  .handicon {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+@media (min-width: 660px) {
+  .handicon{
+    font-size: 1.875rem /* 30px */;
+    line-height: 2.25rem /* 36px */;
   }
-
-  .labeltext,
-  .menutext {
-    font-size: 48px;
+   .labeltext, .menutext{
+    font-size:36px;
+    line-height: 40px;
+   }
+   .socialicon{
+    font-size:48px;
     line-height: 1;
+   }
+   
   }
-
-  .socialicon {
-    font-size: 60px;
-    line-height: 1;
-  }
-}
+  
