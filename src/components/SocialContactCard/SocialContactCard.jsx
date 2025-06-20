@@ -1,5 +1,5 @@
 import React from "react";
-import "./SocialContactCard.css"
+import "./SocialContactCard.css";
 
 const SocialContactCard = ({
   socialmedialogo,
@@ -8,17 +8,14 @@ const SocialContactCard = ({
   socialmedialink,
 }) => {
   return (
-  
-      <a href={socialmedialink} target="_blank" rel="noopener noreferrer">
-        <div className={`social-box-content w-[25vw] ${colorClass}`}>
-          <div className="social-box-icon">
-            <img src={socialmedialogo} alt={mediatext + "img"} />
-          </div>
-          <div className="social-box-text">
-            <p>{mediatext}</p>
-          </div>
+    <a href={socialmedialink} target="_blank" rel="noopener noreferrer">
+      <div className={`social-box-content ${colorClass}`}>
+        <div className="social-box-icon">{socialmedialogo}</div>
+        <div className="social-box-text">
+          <p>{mediatext}</p>
         </div>
-      </a>
+      </div>
+    </a>
   );
 };
 

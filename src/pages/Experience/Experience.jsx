@@ -8,7 +8,7 @@ const experienceData = [
     logo: "/yourgtb_logo.png",
     company: "Your Global Tax Buddy",
     duration: "2024–2025",
-    department: "Lead Web-Developer",
+    department: "Web-Developer",
     result: "Freelancing",
     descriptionPoints: [
       "Built a responsive website using Next.js, Tailwind CSS, to deliver a sleek and accessible UI across devices.",

@@ -1,50 +1,40 @@
-@media (max-width: 1024px) {
-  .mobilenavigation{
-    overflow: hidden;
+/* Mobile base styles */
+.handicon {
+  font-size: 2rem;
+  line-height: 2.25rem;
+}
+
+.labeltext,
+.menutext {
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+.socialicon {
+  font-size: 44px;
+}
+
+/* Hover (optional polish) */
+.sociallinks:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease;
+}
+
+/* Tablet & Desktop Overrides */
+@media (min-width: 600px) {
+  .handicon {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
-    .fullscreennav {
-      flex-direction: column;
-      height: 100vh;
-      width: 100vw;
-    }
-  
-    .socialnav {
-      flex-direction: column;
-      height: 40vh;
-      width: 100vw;
-    }
-  
-    .socialnavgrp {
-      height: 25%;
-      width: 100%;
-    }
-  
-    .socialnavgrplink {
-      flex-direction: row;
-      transform: rotate(0deg); /* this overrides rotate utility */
-    }
-  
-    .menunav {
-      height: 60vh;
-      width: 100vw;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .menunavlink {
-      height: 20%;
-      width: 100%;
-      font-size: 18px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  
-    .menunavlink .group {
-      justify-content: center;
-    }
+
+  .labeltext,
+  .menutext {
+    font-size: 48px;
+    line-height: 1;
   }
-  
+
+  .socialicon {
+    font-size: 60px;
+    line-height: 1;
+  }
+}

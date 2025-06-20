@@ -34,7 +34,8 @@ const InitialPage = ({ onFinish }) => {
       }`}
     >
       {/* Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(#ffffff22_1px,#00091d_1px)] bg-[size:50px_50px]"></div>
+      {/* <div className="absolute inset-0 bg-black bg-[radial-gradient(#ffffff22_0.5px,transparent_0.5px)] bg-[size:50px_50px]"></div> */}
+      <div className="absolute inset-0 bg-black bg-[radial-gradient(#ffffff22_0.5px,transparent_0.5px)] bg-[size:20px_20px]"></div>
 
       {/* Content */}
       <div className="flex flex-col items-start text-4xl md:text-6xl font-bold px-8 py-6 gap-4 text-white z-10">
