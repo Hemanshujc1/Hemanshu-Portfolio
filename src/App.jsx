@@ -4,21 +4,16 @@ import Footer from "./components/Footer/Footer";
 import InitialPage from "./components/IntialPage/IntialPage";
 import Navbar from "./components/Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";
-import Experience from "./pages/Experience/Experience";
-import Work from "./pages/Work/Work";
+import Home from "./pages/Home/Home.jsx";
+import About from "./pages/About/About.jsx";
+import Contact from "./pages/Contact/Contact.jsx";
+import Experience from "./pages/Experience/Experience.jsx";
+import Work from "./pages/Work/Work.jsx";
 import Topofpage from "./components/Topofpage/Topofpage";
 function App() {
   const [showInitial, setShowInitial] = useState(true);
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-  
-
-
-
-
       {showInitial ? (
         <InitialPage onFinish={() => setShowInitial(false)} />
       ) : (
