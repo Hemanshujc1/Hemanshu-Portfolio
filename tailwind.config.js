@@ -17,6 +17,7 @@ export default {
         fadeInUp: 'fadeInUp 0.8s ease-out forwards',
         bounceIn: 'bounceIn 1s ease-out forwards',
       },
+      
       keyframes: {
         fadeInUp: {
           '0%': { opacity: 0, transform: 'translateY(20px)' },
