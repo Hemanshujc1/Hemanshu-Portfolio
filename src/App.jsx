@@ -10,6 +10,7 @@ import Contact from "./pages/Contact/Contact.jsx";
 import Experience from "./pages/Experience/Experience.jsx";
 import Work from "./pages/Work/Work.jsx";
 import Topofpage from "./components/Topofpage/Topofpage";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 function App() {
   const [showInitial, setShowInitial] = useState(true);
   return (
@@ -21,11 +22,12 @@ function App() {
           <Navbar />
           <Topofpage />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/Contact" element={<Contact />} />
-            <Route path="/Experience" element={<Experience />} />
-            <Route path="/Work" element={<Work />} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/About" element={<About/>} />
+            <Route path="/Contact" element={<Contact/>} />
+            <Route path="/Experience" element={<Experience/>} />
+            <Route path="/Work" element={<Work/>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </>
