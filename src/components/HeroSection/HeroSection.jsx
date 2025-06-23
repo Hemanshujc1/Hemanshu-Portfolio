@@ -110,7 +110,7 @@ const HeroSection = () => {
         <div ref={buttonRef}>
             <Button
               text="Download My Resume"
-              link="https://drive.google.com/file/d/1aA8Zl8b9sgrxGSyh-eSxHjBI289Xk2BM/view?usp=sharing"
+              link="https://drive.google.com/file/d/1O-uTwXJgd_Kr8eZsx6GBe3wXFq6aXNaf/view?usp=sharing"
               className="max-w-fit rounded-xl px-2 py-2"
             />
         </div>
