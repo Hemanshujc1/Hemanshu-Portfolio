@@ -27,7 +27,7 @@ const experienceData = [
       "Collaborated with placement officers and company representatives to facilitate campus recruitment activities.",
       "Coordinated student engagement and managed logistics for pre-placement talks, internships, and interviews."
     ],
-     companylink:"https://iiitt.ac.in/"
+     companylink:"http://placement.iiitt.ac.in"
     
   },
   {
