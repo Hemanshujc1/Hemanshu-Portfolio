@@ -15,26 +15,19 @@ const LandingPage = () => {
       const ctx = gsap.context(() => {
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-        tl.from(
-          containerRef.current.children,
-          {
-            opacity: 0,
-            y: 100,
-            duration: 1.3,
-            stagger: 0.3, 
-          },
-          0
-        );
-
-        tl.from(
-          imageRef.current,
-          {
-            opacity: 0,
-            x: 100,
-            duration: 1.5,
-          },
-          "-=0.8" 
-        );
+        tl.from(containerRef.current.children, {
+          opacity: 0,
+          y: 100,
+          duration: 1.5,
+          stagger: 0.2,
+        }, 1); 
+        
+        tl.from(imageRef.current, {
+          opacity: 0,
+          x: 100,
+          duration: 1.5,
+        }, 1); 
+        
       }, containerRef); 
 
       return () => ctx.revert(); 
