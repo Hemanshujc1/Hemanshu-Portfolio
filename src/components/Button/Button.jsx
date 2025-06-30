@@ -16,7 +16,7 @@ const Button = ({ text, link, className = "" }) => {
     <>
       <button
         onClick={handleClick}
-        className={`bg-[#8245ec7b] border border-white text-white bg-ambient shadow-ambient ${className}`}
+        className={`bg-purple-600 font-semibold border border-white text-white transition-all duration-300 ease-in-out hover:bg-black hover:scale-105 hover:shadow-lg ${className}`}
       >
         {text}
       </button>

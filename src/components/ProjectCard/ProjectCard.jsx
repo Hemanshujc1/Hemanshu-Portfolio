@@ -51,7 +51,7 @@ const ProjectCard = ({ title, description, image, links, reverse }) => {
     >
       <div
         ref={imageRef}
-        className="w-full lg:w-[45vw] h-auto rounded-xl shadow-[0_0_10px_10px_rgba(130,69,236,0.3)]"
+        className="w-full lg:w-[45vw] h-auto rounded-xl shadow-[0_0_10px_10px_rgba(130,69,236,0.3)] hover:border-purple-600 hover:border-4 hover:shadow-none p-1"
       >
         <img src={image} alt={`${title} Screenshot`} className="rounded-xl w-full" />
       </div>

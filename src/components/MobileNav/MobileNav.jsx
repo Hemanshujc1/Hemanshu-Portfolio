@@ -77,7 +77,7 @@ const MobileNav = () => {
   return (
     <div className="mobilenavigation relative">
       {/* Toggle Button (Hamburger or Cross) */}
-      <div className="fixed top-8 right-10 z-50">
+      <div className="fixed top-8 right-4 z-50">
         <button
           onClick={() => setOpen(!open)}
           className="mobilenav text-4xl font-extrabold focus:outline-none text-white"

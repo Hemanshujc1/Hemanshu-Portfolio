@@ -14,7 +14,8 @@ function App() {
   const [showInitial, setShowInitial] = useState(true);
   return (
     <div className="relative min-h-screen overflow-x-hidden">
-      {showInitial ? (
+
+       {showInitial ? (
         <InitialPage onFinish={() => setShowInitial(false)} />
       ) : (
         <>

@@ -56,14 +56,14 @@ const InfoCard = ({
       ref={cardRef}
     >
       <div
-        className="Experience-logo lg:w-[180px] lg:h-[180px] md:h-[150px] md:w-[150px] rounded-2xl bg-white flex items-center justify-center overflow-hidden shadow-[0_0_15px_15px_rgba(130,69,236,0.3)]"
+        className="Experience-logo lg:w-[180px] lg:h-[180px] md:h-[150px] md:w-[150px] rounded-2xl bg-white flex items-center justify-center overflow-hidden shadow-[0_0_15px_15px_rgba(130,69,236,0.3)] hover:border-purple-600 hover:border-4 hover:shadow-none p-1"
         ref={logoRef}
       >
         <a href={companylink} target="_blank" rel="noopener noreferrer">
           <img
             src={logo}
             alt={alt || company}
-            className="object-contain w-[200px] h-[200px]"
+            className="object-contain w-[200px] h-[200px"
           />
         </a>
       </div>
