@@ -118,9 +118,22 @@ Visit http://localhost:5000/admin/dashboard to view all contact submissions.
 
 ## Production Deployment
 
-1. Set NODE_ENV=production
-2. Use a production MongoDB instance
-3. Configure proper CORS origins
-4. Set up SSL/HTTPS
-5. Use PM2 or similar for process management
-6. Add proper authentication for admin routes
+### Render Deployment
+1. Connect your GitHub repository to Render
+2. Set environment variables:
+   - `NODE_ENV=production`
+   - `FRONTEND_URL=https://your-vercel-app.vercel.app`
+   - `MONGODB_URI=your-mongodb-atlas-connection-string`
+   - Optional: Email configuration variables
+3. Build Command: `npm install`
+4. Start Command: `npm start`
+
+### Environment Variables for Render:
+```env
+NODE_ENV=production
+PORT=4001
+FRONTEND_URL=https://your-vercel-app.vercel.app
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+EMAIL_USER=your-email@gmail.com (optional)
+EMAIL_PASS=your-app-password (optional)
+```
