@@ -12,7 +12,7 @@ router.get('/dashboard', async (req, res) => {
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Contact Form Submissions - Admin Dashboard</title>
+        <title>Contact Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             * { box-sizing: border-box; }
@@ -67,25 +67,22 @@ router.get('/dashboard', async (req, res) => {
                 padding: 0 30px 30px 30px; 
                 overflow-x: auto;
             }
-            .filters {
-                margin-bottom: 20px;
-                display: flex;
-                gap: 10px;
-                align-items: center;
-                flex-wrap: wrap;
+            
+            .notification {
+                padding: 15px;
+                margin: 20px 0;
+                border-radius: 4px;
+                display: none;
             }
-            .filter-btn {
-                padding: 8px 16px;
-                border: 1px solid #ddd;
-                background: white;
-                border-radius: 20px;
-                cursor: pointer;
-                transition: all 0.2s;
+            .notification.success {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
             }
-            .filter-btn:hover, .filter-btn.active {
-                background: #007bff;
-                color: white;
-                border-color: #007bff;
+            .notification.error {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
             }
             
             table { 
@@ -114,29 +111,26 @@ router.get('/dashboard', async (req, res) => {
             tr:last-child td { border-bottom: none; }
             
             .status-select { 
-                padding: 6px 10px; 
+                padding: 8px 12px; 
                 border: 1px solid #ddd; 
                 border-radius: 4px;
                 background: white;
                 cursor: pointer;
                 font-size: 0.9rem;
+                min-width: 100px;
             }
             
-            .message-preview { 
-                max-width: 250px; 
-                overflow: hidden; 
-                text-overflow: ellipsis; 
-                white-space: nowrap;
-                cursor: pointer;
-                color: #007bff;
-                padding: 5px;
-                border: 1px solid #e0e0e0;
+            .message-btn { 
+                background: #007bff;
+                color: white;
+                border: none;
+                padding: 8px 16px;
                 border-radius: 4px;
-                background: #f8f9fa;
+                cursor: pointer;
+                font-size: 0.9rem;
             }
-            .message-preview:hover { 
-                text-decoration: underline; 
-                background: #e3f2fd;
+            .message-btn:hover { 
+                background: #0056b3;
             }
             
             .date { font-size: 0.9rem; color: #666; }
@@ -157,7 +151,6 @@ router.get('/dashboard', async (req, res) => {
                 width: 100%;
                 height: 100%;
                 background-color: rgba(0,0,0,0.5);
-                backdrop-filter: blur(5px);
             }
             .modal-content {
                 background-color: white;
@@ -218,24 +211,6 @@ router.get('/dashboard', async (req, res) => {
                 line-height: 1.6;
             }
             
-            .success-message {
-                background: #d4edda;
-                color: #155724;
-                padding: 10px 15px;
-                border-radius: 4px;
-                margin: 10px 0;
-                border: 1px solid #c3e6cb;
-            }
-            
-            .error-message {
-                background: #f8d7da;
-                color: #721c24;
-                padding: 10px 15px;
-                border-radius: 4px;
-                margin: 10px 0;
-                border: 1px solid #f5c6cb;
-            }
-            
             @media (max-width: 768px) {
                 body { padding: 10px; }
                 .header h1 { font-size: 2rem; }
@@ -244,7 +219,6 @@ router.get('/dashboard', async (req, res) => {
                 th, td { padding: 10px 8px; font-size: 0.9rem; }
                 .modal-content { margin: 10% auto; width: 95%; }
                 .modal-body { padding: 20px; }
-                .message-preview { max-width: 150px; }
             }
         </style>
     </head>
@@ -275,14 +249,7 @@ router.get('/dashboard', async (req, res) => {
             </div>
             
             <div class="table-container">
-                <div class="filters">
-                    <button class="filter-btn active" onclick="filterContacts('all', this)">All</button>
-                    <button class="filter-btn" onclick="filterContacts('new', this)">New</button>
-                    <button class="filter-btn" onclick="filterContacts('read', this)">Read</button>
-                    <button class="filter-btn" onclick="filterContacts('replied', this)">Replied</button>
-                </div>
-                
-                <div id="message-area"></div>
+                <div id="notification" class="notification"></div>
                 
                 <table>
                     <thead>
@@ -296,8 +263,8 @@ router.get('/dashboard', async (req, res) => {
                         </tr>
                     </thead>
                     <tbody>
-                        ${contacts.map(contact => `
-                            <tr class="contact-row" data-status="${contact.status}" data-id="${contact._id}">
+                        ${contacts.map((contact, index) => `
+                            <tr data-id="${contact._id}">
                                 <td class="date">${new Date(contact.createdAt).toLocaleDateString('en-US', { 
                                     year: 'numeric', 
                                     month: 'short', 
@@ -312,12 +279,12 @@ router.get('/dashboard', async (req, res) => {
                                 </td>
                                 <td><strong>${contact.subject}</strong></td>
                                 <td>
-                                    <div class="message-preview" onclick="showMessage('${contact._id}')">
-                                        ${contact.message.substring(0, 50)}${contact.message.length > 50 ? '...' : ''}
-                                    </div>
+                                    <button class="message-btn" onclick="viewMessage(${index})">
+                                        View Message
+                                    </button>
                                 </td>
                                 <td>
-                                    <select class="status-select" onchange="updateStatus('${contact._id}', this.value)" data-original="${contact.status}">
+                                    <select class="status-select" onchange="changeStatus('${contact._id}', this.value)">
                                         <option value="new" ${contact.status === 'new' ? 'selected' : ''}>New</option>
                                         <option value="read" ${contact.status === 'read' ? 'selected' : ''}>Read</option>
                                         <option value="replied" ${contact.status === 'replied' ? 'selected' : ''}>Replied</option>
@@ -344,15 +311,12 @@ router.get('/dashboard', async (req, res) => {
         </div>
 
         <script>
-            const contacts = ${JSON.stringify(contacts)};
+            // Store contacts data
+            window.contactsData = ${JSON.stringify(contacts)};
             
-            function showMessage(contactId) {
-                console.log('Showing message for:', contactId);
-                const contact = contacts.find(c => c._id === contactId);
-                if (!contact) {
-                    console.error('Contact not found:', contactId);
-                    return;
-                }
+            function viewMessage(index) {
+                const contact = window.contactsData[index];
+                if (!contact) return;
                 
                 const modalBody = document.getElementById('modalBody');
                 modalBody.innerHTML = 
@@ -387,7 +351,7 @@ router.get('/dashboard', async (req, res) => {
                 
                 // Mark as read if it's new
                 if (contact.status === 'new') {
-                    updateStatus(contactId, 'read');
+                    changeStatus(contact._id, 'read');
                 }
             }
             
@@ -395,20 +359,19 @@ router.get('/dashboard', async (req, res) => {
                 document.getElementById('messageModal').style.display = 'none';
             }
             
-            function showMessage(messageArea, type, text) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = type + '-message';
-                messageDiv.textContent = text;
-                messageArea.appendChild(messageDiv);
+            function showNotification(message, type) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.className = 'notification ' + type;
+                notification.style.display = 'block';
                 
-                setTimeout(() => {
-                    messageDiv.remove();
+                setTimeout(function() {
+                    notification.style.display = 'none';
                 }, 3000);
             }
             
-            function updateStatus(contactId, newStatus) {
-                console.log('Updating status for:', contactId, 'to:', newStatus);
-                const messageArea = document.getElementById('message-area');
+            function changeStatus(contactId, newStatus) {
+                console.log('Changing status for:', contactId, 'to:', newStatus);
                 
                 fetch('/api/contact/' + contactId + '/status', {
                     method: 'PUT',
@@ -417,64 +380,33 @@ router.get('/dashboard', async (req, res) => {
                     },
                     body: JSON.stringify({ status: newStatus })
                 })
-                .then(response => {
-                    console.log('Response status:', response.status);
+                .then(function(response) {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
-                .then(data => {
-                    console.log('Response data:', data);
+                .then(function(data) {
                     if (data.success) {
-                        // Update the contact in our local array
-                        const contact = contacts.find(c => c._id === contactId);
+                        showNotification('Status updated successfully!', 'success');
+                        
+                        // Update local data
+                        const contact = window.contactsData.find(function(c) { return c._id === contactId; });
                         if (contact) {
                             contact.status = newStatus;
                         }
                         
-                        // Show success message
-                        showMessage(messageArea, 'success', 'Status updated successfully!');
-                        
-                        // Update the row's data attribute
-                        const row = document.querySelector('[data-id="' + contactId + '"]');
-                        if (row) {
-                            row.setAttribute('data-status', newStatus);
-                        }
-                        
-                        // Refresh stats after a short delay
-                        setTimeout(() => location.reload(), 1500);
+                        // Refresh page after delay to update stats
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500);
                     } else {
                         throw new Error(data.message || 'Failed to update status');
                     }
                 })
-                .catch(error => {
+                .catch(function(error) {
                     console.error('Error:', error);
-                    showMessage(messageArea, 'error', 'Error updating status: ' + error.message);
-                    
-                    // Reset the select to original value
-                    const select = document.querySelector('[data-id="' + contactId + '"] select');
-                    if (select) {
-                        select.value = select.getAttribute('data-original');
-                    }
-                });
-            }
-            
-            function filterContacts(status, button) {
-                const rows = document.querySelectorAll('.contact-row');
-                const buttons = document.querySelectorAll('.filter-btn');
-                
-                // Update active button
-                buttons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Filter rows
-                rows.forEach(row => {
-                    if (status === 'all' || row.getAttribute('data-status') === status) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
+                    showNotification('Error updating status: ' + error.message, 'error');
                 });
             }
             
