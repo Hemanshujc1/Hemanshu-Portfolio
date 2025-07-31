@@ -96,17 +96,45 @@ function changeStatus(contactId, newStatus) {
     });
 }
 
-// Close modal when clicking outside
-window.onclick = function(event) {
-    const modal = document.getElementById('messageModal');
-    if (event.target === modal) {
-        closeModal();
+// Initialize event listeners when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listeners for message buttons
+    const messageButtons = document.querySelectorAll('.message-btn');
+    messageButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            viewMessage(index);
+        });
+    });
+    
+    // Add event listeners for status selects
+    const statusSelects = document.querySelectorAll('.status-select');
+    statusSelects.forEach(function(select) {
+        select.addEventListener('change', function() {
+            const contactId = this.getAttribute('data-contact-id');
+            const newStatus = this.value;
+            changeStatus(contactId, newStatus);
+        });
+    });
+    
+    // Add event listener for close modal button
+    const closeBtn = document.getElementById('closeModalBtn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
     }
-}
-
-// Close modal with Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closeModal();
-    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('messageModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
 });

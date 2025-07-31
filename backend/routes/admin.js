@@ -279,12 +279,12 @@ router.get('/dashboard', async (req, res) => {
                                 </td>
                                 <td><strong>${contact.subject}</strong></td>
                                 <td>
-                                    <button class="message-btn" onclick="viewMessage(${index})">
+                                    <button class="message-btn" data-index="${index}">
                                         View Message
                                     </button>
                                 </td>
                                 <td>
-                                    <select class="status-select" onchange="changeStatus('${contact._id}', this.value)">
+                                    <select class="status-select" data-contact-id="${contact._id}">
                                         <option value="new" ${contact.status === 'new' ? 'selected' : ''}>New</option>
                                         <option value="read" ${contact.status === 'read' ? 'selected' : ''}>Read</option>
                                         <option value="replied" ${contact.status === 'replied' ? 'selected' : ''}>Replied</option>
@@ -302,7 +302,7 @@ router.get('/dashboard', async (req, res) => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>📩 Message Details</h2>
-                    <span class="close" onclick="closeModal()">&times;</span>
+                    <span class="close" id="closeModalBtn">&times;</span>
                 </div>
                 <div class="modal-body" id="modalBody">
                     <!-- Content will be populated by JavaScript -->
