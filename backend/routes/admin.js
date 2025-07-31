@@ -113,37 +113,31 @@ router.get('/dashboard', async (req, res) => {
             tr:hover { background-color: #f8f9fa; }
             tr:last-child td { border-bottom: none; }
             
-            .contact-row { cursor: pointer; }
-            .contact-row.expanded { background-color: #e3f2fd; }
-            
             .status-select { 
                 padding: 6px 10px; 
                 border: 1px solid #ddd; 
                 border-radius: 4px;
                 background: white;
                 cursor: pointer;
+                font-size: 0.9rem;
             }
-            .status { 
-                padding: 6px 12px; 
-                border-radius: 20px; 
-                font-size: 0.8rem; 
-                font-weight: 600;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-            }
-            .status.new { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
-            .status.read { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
-            .status.replied { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
             
             .message-preview { 
-                max-width: 200px; 
+                max-width: 250px; 
                 overflow: hidden; 
                 text-overflow: ellipsis; 
                 white-space: nowrap;
                 cursor: pointer;
                 color: #007bff;
+                padding: 5px;
+                border: 1px solid #e0e0e0;
+                border-radius: 4px;
+                background: #f8f9fa;
             }
-            .message-preview:hover { text-decoration: underline; }
+            .message-preview:hover { 
+                text-decoration: underline; 
+                background: #e3f2fd;
+            }
             
             .date { font-size: 0.9rem; color: #666; }
             .contact-info { font-weight: 500; }
@@ -220,6 +214,26 @@ router.get('/dashboard', async (req, res) => {
                 border-left: 4px solid #007bff;
                 white-space: pre-wrap;
                 word-wrap: break-word;
+                font-family: inherit;
+                line-height: 1.6;
+            }
+            
+            .success-message {
+                background: #d4edda;
+                color: #155724;
+                padding: 10px 15px;
+                border-radius: 4px;
+                margin: 10px 0;
+                border: 1px solid #c3e6cb;
+            }
+            
+            .error-message {
+                background: #f8d7da;
+                color: #721c24;
+                padding: 10px 15px;
+                border-radius: 4px;
+                margin: 10px 0;
+                border: 1px solid #f5c6cb;
             }
             
             @media (max-width: 768px) {
@@ -230,6 +244,7 @@ router.get('/dashboard', async (req, res) => {
                 th, td { padding: 10px 8px; font-size: 0.9rem; }
                 .modal-content { margin: 10% auto; width: 95%; }
                 .modal-body { padding: 20px; }
+                .message-preview { max-width: 150px; }
             }
         </style>
     </head>
@@ -261,11 +276,13 @@ router.get('/dashboard', async (req, res) => {
             
             <div class="table-container">
                 <div class="filters">
-                    <button class="filter-btn active" onclick="filterContacts('all')">All</button>
-                    <button class="filter-btn" onclick="filterContacts('new')">New</button>
-                    <button class="filter-btn" onclick="filterContacts('read')">Read</button>
-                    <button class="filter-btn" onclick="filterContacts('replied')">Replied</button>
+                    <button class="filter-btn active" onclick="filterContacts('all', this)">All</button>
+                    <button class="filter-btn" onclick="filterContacts('new', this)">New</button>
+                    <button class="filter-btn" onclick="filterContacts('read', this)">Read</button>
+                    <button class="filter-btn" onclick="filterContacts('replied', this)">Replied</button>
                 </div>
+                
+                <div id="message-area"></div>
                 
                 <table>
                     <thead>
@@ -300,7 +317,7 @@ router.get('/dashboard', async (req, res) => {
                                     </div>
                                 </td>
                                 <td>
-                                    <select class="status-select" onchange="updateStatus('${contact._id}', this.value)">
+                                    <select class="status-select" onchange="updateStatus('${contact._id}', this.value)" data-original="${contact.status}">
                                         <option value="new" ${contact.status === 'new' ? 'selected' : ''}>New</option>
                                         <option value="read" ${contact.status === 'read' ? 'selected' : ''}>Read</option>
                                         <option value="replied" ${contact.status === 'replied' ? 'selected' : ''}>Replied</option>
@@ -330,38 +347,41 @@ router.get('/dashboard', async (req, res) => {
             const contacts = ${JSON.stringify(contacts)};
             
             function showMessage(contactId) {
+                console.log('Showing message for:', contactId);
                 const contact = contacts.find(c => c._id === contactId);
-                if (!contact) return;
+                if (!contact) {
+                    console.error('Contact not found:', contactId);
+                    return;
+                }
                 
                 const modalBody = document.getElementById('modalBody');
-                modalBody.innerHTML = \`
-                    <div class="detail-row">
-                        <div class="detail-label">From</div>
-                        <div class="detail-value">\${contact.firstName} \${contact.lastName}</div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Email</div>
-                        <div class="detail-value"><a href="mailto:\${contact.email}" class="email-link">\${contact.email}</a></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Phone</div>
-                        <div class="detail-value"><a href="tel:\${contact.number}" class="phone-link">\${contact.number}</a></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Subject</div>
-                        <div class="detail-value"><strong>\${contact.subject}</strong></div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Date</div>
-                        <div class="detail-value">\${new Date(contact.createdAt).toLocaleString()}</div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Message</div>
-                        <div class="detail-value">
-                            <div class="message-full">\${contact.message}</div>
-                        </div>
-                    </div>
-                \`;
+                modalBody.innerHTML = 
+                    '<div class="detail-row">' +
+                        '<div class="detail-label">From</div>' +
+                        '<div class="detail-value">' + contact.firstName + ' ' + contact.lastName + '</div>' +
+                    '</div>' +
+                    '<div class="detail-row">' +
+                        '<div class="detail-label">Email</div>' +
+                        '<div class="detail-value"><a href="mailto:' + contact.email + '" class="email-link">' + contact.email + '</a></div>' +
+                    '</div>' +
+                    '<div class="detail-row">' +
+                        '<div class="detail-label">Phone</div>' +
+                        '<div class="detail-value"><a href="tel:' + contact.number + '" class="phone-link">' + contact.number + '</a></div>' +
+                    '</div>' +
+                    '<div class="detail-row">' +
+                        '<div class="detail-label">Subject</div>' +
+                        '<div class="detail-value"><strong>' + contact.subject + '</strong></div>' +
+                    '</div>' +
+                    '<div class="detail-row">' +
+                        '<div class="detail-label">Date</div>' +
+                        '<div class="detail-value">' + new Date(contact.createdAt).toLocaleString() + '</div>' +
+                    '</div>' +
+                    '<div class="detail-row">' +
+                        '<div class="detail-label">Message</div>' +
+                        '<div class="detail-value">' +
+                            '<div class="message-full">' + contact.message + '</div>' +
+                        '</div>' +
+                    '</div>';
                 
                 document.getElementById('messageModal').style.display = 'block';
                 
@@ -375,16 +395,37 @@ router.get('/dashboard', async (req, res) => {
                 document.getElementById('messageModal').style.display = 'none';
             }
             
+            function showMessage(messageArea, type, text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = type + '-message';
+                messageDiv.textContent = text;
+                messageArea.appendChild(messageDiv);
+                
+                setTimeout(() => {
+                    messageDiv.remove();
+                }, 3000);
+            }
+            
             function updateStatus(contactId, newStatus) {
-                fetch(\`/api/contact/\${contactId}/status\`, {
+                console.log('Updating status for:', contactId, 'to:', newStatus);
+                const messageArea = document.getElementById('message-area');
+                
+                fetch('/api/contact/' + contactId + '/status', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({ status: newStatus })
                 })
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    console.log('Response data:', data);
                     if (data.success) {
                         // Update the contact in our local array
                         const contact = contacts.find(c => c._id === contactId);
@@ -392,29 +433,44 @@ router.get('/dashboard', async (req, res) => {
                             contact.status = newStatus;
                         }
                         
-                        // Refresh the page to update stats
-                        setTimeout(() => location.reload(), 500);
+                        // Show success message
+                        showMessage(messageArea, 'success', 'Status updated successfully!');
+                        
+                        // Update the row's data attribute
+                        const row = document.querySelector('[data-id="' + contactId + '"]');
+                        if (row) {
+                            row.setAttribute('data-status', newStatus);
+                        }
+                        
+                        // Refresh stats after a short delay
+                        setTimeout(() => location.reload(), 1500);
                     } else {
-                        alert('Failed to update status: ' + data.message);
+                        throw new Error(data.message || 'Failed to update status');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Error updating status');
+                    showMessage(messageArea, 'error', 'Error updating status: ' + error.message);
+                    
+                    // Reset the select to original value
+                    const select = document.querySelector('[data-id="' + contactId + '"] select');
+                    if (select) {
+                        select.value = select.getAttribute('data-original');
+                    }
                 });
             }
             
-            function filterContacts(status) {
+            function filterContacts(status, button) {
                 const rows = document.querySelectorAll('.contact-row');
                 const buttons = document.querySelectorAll('.filter-btn');
                 
                 // Update active button
                 buttons.forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
+                button.classList.add('active');
                 
                 // Filter rows
                 rows.forEach(row => {
-                    if (status === 'all' || row.dataset.status === status) {
+                    if (status === 'all' || row.getAttribute('data-status') === status) {
                         row.style.display = '';
                     } else {
                         row.style.display = 'none';
