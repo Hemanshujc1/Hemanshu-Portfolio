@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
-import useWeb3Forms from "@web3forms/react";
 import { motion, useInView } from "framer-motion";
 import "./Contact.css";
 
@@ -14,23 +13,37 @@ const Contact = () => {
   } = useForm();
 
   const [result, setResult] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const { submit: onSubmit } = useWeb3Forms({
-      access_key: "f7623f02-5bc7-4879-ab45-91c6231ca35c",
-    settings: {
-      from_name: "HEMANSHU PORTFOLIO",
-      subject: "New Message from my Portfolio Website",
-    },
-    onSuccess: (msg) => {
-      setResult(msg);
-      reset();
-      setTimeout(() => setResult(null), 2000);
-    },
-    onError: (msg) => {
-      setResult(msg);
-      setTimeout(() => setResult(null), 2000);
-    },
-  });
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    setResult(null);
+
+    try {
+      const response = await fetch('http://localhost:4001/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (response.ok) {
+        setResult(responseData.message);
+        reset();
+      } else {
+        setResult(responseData.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setResult('Network error. Please check your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setResult(null), 5000);
+    }
+  };
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true });
@@ -221,11 +234,20 @@ const Contact = () => {
             <div className="flex flex-col items-center gap-4 mt-3">
               <input
                 type="submit"
-                value="Message Me"
-                className="px-6 py-2 rounded-md text-white font-bold hover:bg-gray-200 transition-all bg-ambient shadow-ambient"
+                value={isSubmitting ? "Sending..." : "Message Me"}
+                disabled={isSubmitting}
+                className={`px-6 py-2 rounded-md text-white font-bold transition-all bg-ambient shadow-ambient ${
+                  isSubmitting 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:bg-gray-200'
+                }`}
               />
               {result && (
-                <div className="text-sm font-extrabold text-white transition-opacity duration-300 ease-in">
+                <div className={`text-sm font-extrabold transition-opacity duration-300 ease-in ${
+                  result.includes('Thank you') || result.includes('success') 
+                    ? 'text-green-400' 
+                    : 'text-red-400'
+                }`}>
                   {result}
                 </div>
               )}
