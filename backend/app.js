@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 require('dotenv').config();
 
 const contactRoutes = require('./routes/contact');
@@ -37,8 +38,12 @@ app.use(cors({
   credentials: true
 }));
 
+// View engine setup
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Static files
-app.use('/static', express.static('public'));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));

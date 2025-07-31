@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-500 to-purple-700 min-h-screen p-5">
+  <div class="max-w-screen-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-gray-800 to-gray-700 text-white text-center p-8">
+      <h1 class="text-4xl font-light">📧 Contact Dashboard</h1>
+      <p class="mt-2 text-white/80">Manage your portfolio contact form submissions</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8 bg-gray-50">
+      <div class="bg-white p-6 rounded-lg text-center shadow-md border-l-4 border-purple-600 hover:shadow-lg transition-shadow">
+        <h3 class="text-3xl font-bold text-gray-800"><%= contacts.length %></h3>
+        <p class="text-gray-600 font-medium mt-2">Total Submissions</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg text-center shadow-md border-l-4 border-yellow-400 hover:shadow-lg transition-shadow">
+        <h3 class="text-3xl font-bold text-gray-800"><%= contacts.filter(c => c.status === 'new').length %></h3>
+        <p class="text-gray-600 font-medium mt-2">New Messages</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg text-center shadow-md border-l-4 border-cyan-500 hover:shadow-lg transition-shadow">
+        <h3 class="text-3xl font-bold text-gray-800"><%= contacts.filter(c => c.status === 'read').length %></h3>
+        <p class="text-gray-600 font-medium mt-2">Read Messages</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg text-center shadow-md border-l-4 border-green-500 hover:shadow-lg transition-shadow">
+        <h3 class="text-3xl font-bold text-gray-800"><%= contacts.filter(c => c.status === 'replied').length %></h3>
+        <p class="text-gray-600 font-medium mt-2">Replied</p>
+      </div>
+    </div>
+
+    <!-- Table Container -->
+    <div class="p-8">
+      <!-- Notification Area -->
+      <div id="notification" class="hidden p-4 rounded-lg border text-sm mb-6"></div>
+      
+      <!-- Filter Buttons -->
+      <div class="mb-6 flex flex-wrap gap-2">
+        <button class="filter-btn bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" data-status="all">
+          All Messages
+        </button>
+        <button class="filter-btn bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors" data-status="new">
+          New
+        </button>
+        <button class="filter-btn bg-cyan-500 text-white px-4 py-2 rounded-lg hover:bg-cyan-600 transition-colors" data-status="read">
+          Read
+        </button>
+        <button class="filter-btn bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors" data-status="replied">
+          Replied
+        </button>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto bg-white rounded-lg shadow-md">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-800 text-white uppercase text-xs tracking-wider">
+            <tr>
+              <th class="px-6 py-4">Date</th>
+              <th class="px-6 py-4">Name</th>
+              <th class="px-6 py-4">Contact</th>
+              <th class="px-6 py-4">Subject</th>
+              <th class="px-6 py-4">Message</th>
+              <th class="px-6 py-4">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <% contacts.forEach((contact, index) => { %>
+            <tr class="contact-row hover:bg-gray-50 transition-colors" data-id="<%= contact._id %>" data-status="<%= contact.status %>">
+              <td class="px-6 py-4 text-gray-600 text-xs">
+                <%= new Date(contact.createdAt).toLocaleDateString('en-US', {
+                  year: 'numeric', 
+                  month: 'short', 
+                  day: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                }) %>
+              </td>
+              <td class="px-6 py-4 font-medium text-gray-900">
+                <%= contact.firstName %> <%= contact.lastName %>
+              </td>
+              <td class="px-6 py-4">
+                <a href="mailto:<%= contact.email %>" class="text-blue-600 hover:underline block text-xs">
+                  <%= contact.email %>
+                </a>
+                <a href="tel:<%= contact.number %>" class="text-blue-600 hover:underline block text-xs mt-1">
+                  <%= contact.number %>
+                </a>
+              </td>
+              <td class="px-6 py-4 font-semibold text-gray-900 max-w-xs">
+                <div class="truncate" title="<%= contact.subject %>">
+                  <%= contact.subject %>
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <button class="message-btn bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition-colors text-xs" 
+                        data-index="<%= index %>">
+                  View Message
+                </button>
+              </td>
+              <td class="px-6 py-4">
+                <select class="status-select border border-gray-300 px-3 py-1 rounded-md text-xs focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                        data-contact-id="<%= contact._id %>">
+                  <option value="new" <%= contact.status === 'new' ? 'selected' : '' %>>New</option>
+                  <option value="read" <%= contact.status === 'read' ? 'selected' : '' %>>Read</option>
+                  <option value="replied" <%= contact.status === 'replied' ? 'selected' : '' %>>Replied</option>
+                </select>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message Modal -->
+  <div id="messageModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+      <div class="bg-gradient-to-r from-gray-800 to-gray-700 text-white flex justify-between items-center px-6 py-4">
+        <h2 class="text-xl font-semibold">📩 Message Details</h2>
+        <button id="closeModalBtn" class="text-2xl font-bold opacity-80 hover:opacity-100 transition-opacity">&times;</button>
+      </div>
+      <div class="p-6 overflow-y-auto max-h-[calc(90vh-80px)]" id="modalBody">
+        <!-- Content will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Pass contacts data to JavaScript
+    window.contactsData = <%- JSON.stringify(contacts) %>;
+  </script>
+  <script src="/static/admin-dashboard.js"></script>
+</body>
+</html>

@@ -33,7 +33,9 @@ function viewMessage(index) {
             '</div>' +
         '</div>';
     
-    document.getElementById('messageModal').style.display = 'block';
+    const modal = document.getElementById('messageModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
     
     // Mark as read if it's new
     if (contact.status === 'new') {
@@ -42,17 +44,26 @@ function viewMessage(index) {
 }
 
 function closeModal() {
-    document.getElementById('messageModal').style.display = 'none';
+    const modal = document.getElementById('messageModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 }
 
 function showNotification(message, type) {
     const notification = document.getElementById('notification');
     notification.textContent = message;
-    notification.className = 'notification ' + type;
-    notification.style.display = 'block';
+    notification.className = 'p-4 rounded-lg border text-sm mb-6 ';
+    
+    if (type === 'success') {
+        notification.className += 'bg-green-50 text-green-800 border-green-200';
+    } else {
+        notification.className += 'bg-red-50 text-red-800 border-red-200';
+    }
+    
+    notification.classList.remove('hidden');
     
     setTimeout(function() {
-        notification.style.display = 'none';
+        notification.classList.add('hidden');
     }, 3000);
 }
 
@@ -96,6 +107,36 @@ function changeStatus(contactId, newStatus) {
     });
 }
 
+// Filter functionality
+function filterContacts(status) {
+    const rows = document.querySelectorAll('.contact-row');
+    const buttons = document.querySelectorAll('.filter-btn');
+    
+    // Update active button
+    buttons.forEach(btn => {
+        btn.classList.remove('bg-blue-600', 'bg-yellow-500', 'bg-cyan-500', 'bg-green-500');
+        btn.classList.add('bg-gray-300', 'text-gray-700');
+    });
+    
+    const activeBtn = document.querySelector(`[data-status="${status}"]`);
+    if (activeBtn) {
+        activeBtn.classList.remove('bg-gray-300', 'text-gray-700');
+        if (status === 'all') activeBtn.classList.add('bg-blue-600', 'text-white');
+        else if (status === 'new') activeBtn.classList.add('bg-yellow-500', 'text-white');
+        else if (status === 'read') activeBtn.classList.add('bg-cyan-500', 'text-white');
+        else if (status === 'replied') activeBtn.classList.add('bg-green-500', 'text-white');
+    }
+    
+    // Filter rows
+    rows.forEach(row => {
+        if (status === 'all' || row.getAttribute('data-status') === status) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}
+
 // Initialize event listeners when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners for message buttons
@@ -114,6 +155,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const contactId = this.getAttribute('data-contact-id');
             const newStatus = this.value;
             changeStatus(contactId, newStatus);
+        });
+    });
+    
+    // Add event listeners for filter buttons
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const status = this.getAttribute('data-status');
+            filterContacts(status);
         });
     });
     
@@ -137,4 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     });
+    
+    // Set initial filter to 'all'
+    filterContacts('all');
 });
