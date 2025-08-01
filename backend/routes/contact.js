@@ -5,19 +5,7 @@ const { sendNotificationEmail } = require('../utils/emailService');
 
 const router = express.Router();
 
-// Middleware to log all requests to contact endpoint
-router.use((req, res, next) => {
-  console.log(`Contact API ${req.method} ${req.path}:`, {
-    body: req.body,
-    query: req.query,
-    headers: {
-      'content-type': req.headers['content-type'],
-      'origin': req.headers.origin,
-      'user-agent': req.headers['user-agent']
-    }
-  });
-  next();
-});
+
 
 
 
@@ -85,21 +73,13 @@ const contactValidation = [
 // POST /api/contact - Submit contact form
 router.post('/', contactValidation, async (req, res) => {
   try {
-    console.log('Contact form submission received:', {
-      body: req.body,
-      headers: req.headers['content-type']
-    });
-
     // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log('Validation errors:', errors.array());
-      const errorMessages = errors.array().map(error => `${error.param}: ${error.msg}`);
       return res.status(400).json({
         success: false,
         message: 'Please check your input and try again',
-        errors: errors.array(),
-        details: errorMessages
+        errors: errors.array()
       });
     }
 

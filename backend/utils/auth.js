@@ -5,7 +5,7 @@ const Admin = require('../models/Admin');
 const generateToken = (adminId) => {
   return jwt.sign(
     { adminId },
-    process.env.JWT_SECRET || 'your-secret-key',
+    process.env.JWT_SECRET || 'hemanshuportfolio-secret-key',
     { expiresIn: '24h' }
   );
 };
@@ -32,7 +32,7 @@ const requireAuth = async (req, res, next) => {
     }
 
     // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-secret-key');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'hemanshuportfolio-secret-key');
     
     // Check token expiration explicitly
     if (decoded.exp && Date.now() >= decoded.exp * 1000) {

@@ -39,16 +39,14 @@ const limiter = rateLimit({
   }
 });
 
-// Manual CORS handling for better control
+// CORS configuration
 app.use((req, res, next) => {
   const origin = req.headers.origin;
   const allowedOrigins = [
-    'https://hemanshujc-portfolio.vercel.app',
+    'https://hemanshujc-.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000'
   ];
-
-  console.log(`${req.method} ${req.path} - Origin: ${origin}`);
 
   // Set CORS headers
   if (allowedOrigins.includes(origin) || !origin) {
@@ -62,7 +60,6 @@ app.use((req, res, next) => {
 
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
-    console.log('Handling OPTIONS preflight request');
     return res.sendStatus(200);
   }
 
