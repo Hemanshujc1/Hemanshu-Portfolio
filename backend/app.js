@@ -29,17 +29,45 @@ app.use(helmet({
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // limit each IP to 10 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.'
+  max: 100, // Increased limit to avoid blocking during testing
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  skip: (req) => {
+    // Skip rate limiting for OPTIONS requests (CORS preflight)
+    return req.method === 'OPTIONS';
+  }
 });
 
-app.use('/api/contact', limiter);
+// Manual CORS handling for better control
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  const allowedOrigins = [
+    'https://hemanshujc-portfolio.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000'
+  ];
 
-// CORS configuration
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true
-}));
+  console.log(`${req.method} ${req.path} - Origin: ${origin}`);
+
+  // Set CORS headers
+  if (allowedOrigins.includes(origin) || !origin) {
+    res.header('Access-Control-Allow-Origin', origin || '*');
+  }
+  
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Max-Age', '86400'); // 24 hours
+
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    console.log('Handling OPTIONS preflight request');
+    return res.sendStatus(200);
+  }
+
+  next();
+});
 
 // View engine setup
 app.set('view engine', 'ejs');
@@ -70,7 +98,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio
 .catch((err) => console.error('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/contact', contactRoutes);
+app.use('/api/contact', limiter, contactRoutes);
 
 // Admin routes with additional security headers
 app.use('/admin', (req, res, next) => {

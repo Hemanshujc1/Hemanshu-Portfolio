@@ -19,14 +19,7 @@ router.use((req, res, next) => {
   next();
 });
 
-// Handle preflight requests
-router.options('/', (req, res) => {
-  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'http://localhost:5173');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.sendStatus(200);
-});
+
 
 // Test endpoint
 router.get('/test', (req, res) => {
@@ -34,8 +27,20 @@ router.get('/test', (req, res) => {
     success: true,
     message: 'Contact API is working',
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    origin: req.headers.origin,
+    corsHeaders: {
+      'access-control-allow-origin': res.get('Access-Control-Allow-Origin'),
+      'access-control-allow-methods': res.get('Access-Control-Allow-Methods'),
+      'access-control-allow-headers': res.get('Access-Control-Allow-Headers')
+    }
   });
+});
+
+// CORS test endpoint
+router.options('/test', (req, res) => {
+  console.log('OPTIONS /test called with origin:', req.headers.origin);
+  res.sendStatus(200);
 });
 
 // Validation rules
