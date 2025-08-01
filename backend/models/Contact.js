@@ -26,22 +26,22 @@ const contactSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Mobile number is required'],
     trim: true,
-    minlength: [10, 'Mobile number must be at least 10 digits'],
-    maxlength: [14, 'Mobile number cannot exceed 14 digits']
+    minlength: [10, 'Mobile number must be at least 10 characters'],
+    maxlength: [15, 'Mobile number cannot exceed 15 characters']
   },
   subject: {
     type: String,
     required: [true, 'Subject is required'],
     trim: true,
     minlength: [5, 'Subject must be at least 5 characters'],
-    maxlength: [50, 'Subject cannot exceed 50 characters']
+    maxlength: [100, 'Subject cannot exceed 100 characters']
   },
   message: {
     type: String,
     required: [true, 'Message is required'],
     trim: true,
-    minlength: [20, 'Message must be at least 20 characters'],
-    maxlength: [1000, 'Message cannot exceed 1000 characters']
+    minlength: [10, 'Message must be at least 10 characters'],
+    maxlength: [2000, 'Message cannot exceed 2000 characters']
   },
   status: {
     type: String,

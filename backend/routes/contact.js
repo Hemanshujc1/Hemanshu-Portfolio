@@ -5,20 +5,53 @@ const { sendNotificationEmail } = require('../utils/emailService');
 
 const router = express.Router();
 
+// Middleware to log all requests to contact endpoint
+router.use((req, res, next) => {
+  console.log(`Contact API ${req.method} ${req.path}:`, {
+    body: req.body,
+    query: req.query,
+    headers: {
+      'content-type': req.headers['content-type'],
+      'origin': req.headers.origin,
+      'user-agent': req.headers['user-agent']
+    }
+  });
+  next();
+});
+
+// Handle preflight requests
+router.options('/', (req, res) => {
+  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'http://localhost:5173');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(200);
+});
+
+// Test endpoint
+router.get('/test', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Contact API is working',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
+});
+
 // Validation rules
 const contactValidation = [
   body('FirstName')
     .trim()
     .isLength({ min: 2, max: 20 })
     .withMessage('First name must be between 2 and 20 characters')
-    .matches(/^[a-zA-Z\s]+$/)
+    .matches(/^[a-zA-Z\s\u00C0-\u017F]+$/)
     .withMessage('First name can only contain letters and spaces'),
   
   body('LastName')
     .trim()
     .isLength({ min: 2, max: 20 })
     .withMessage('Last name must be between 2 and 20 characters')
-    .matches(/^[a-zA-Z\s]+$/)
+    .matches(/^[a-zA-Z\s\u00C0-\u017F]+$/)
     .withMessage('Last name can only contain letters and spaces'),
   
   body('Email')
@@ -28,32 +61,40 @@ const contactValidation = [
   
   body('Number')
     .trim()
-    .isLength({ min: 10, max: 14 })
-    .withMessage('Mobile number must be between 10 and 14 digits')
-    .matches(/^[+]?[\d\s-()]+$/)
+    .isLength({ min: 10, max: 15 })
+    .withMessage('Mobile number must be between 10 and 15 characters')
+    .matches(/^[+]?[\d\s\-()]+$/)
     .withMessage('Please provide a valid mobile number'),
   
   body('Subject')
     .trim()
-    .isLength({ min: 5, max: 50 })
-    .withMessage('Subject must be between 5 and 50 characters'),
+    .isLength({ min: 5, max: 100 })
+    .withMessage('Subject must be between 5 and 100 characters'),
   
   body('Message')
     .trim()
-    .isLength({ min: 20, max: 1000 })
-    .withMessage('Message must be between 20 and 1000 characters')
+    .isLength({ min: 10, max: 2000 })
+    .withMessage('Message must be between 10 and 2000 characters')
 ];
 
 // POST /api/contact - Submit contact form
 router.post('/', contactValidation, async (req, res) => {
   try {
+    console.log('Contact form submission received:', {
+      body: req.body,
+      headers: req.headers['content-type']
+    });
+
     // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.log('Validation errors:', errors.array());
+      const errorMessages = errors.array().map(error => `${error.param}: ${error.msg}`);
       return res.status(400).json({
         success: false,
-        message: 'Validation failed',
-        errors: errors.array()
+        message: 'Please check your input and try again',
+        errors: errors.array(),
+        details: errorMessages
       });
     }
 
@@ -72,20 +113,23 @@ router.post('/', contactValidation, async (req, res) => {
     // Save to database
     await contact.save();
 
-    // Send notification email (optional)
-    try {
-      await sendNotificationEmail({
-        firstName: FirstName,
-        lastName: LastName,
-        email: Email,
-        number: Number,
-        subject: Subject,
-        message: Message
-      });
-    } catch (emailError) {
-      console.error('Email notification failed:', emailError);
-      // Don't fail the request if email fails
-    }
+    // Send notification email (optional) - don't let email errors affect the response
+    setTimeout(async () => {
+      try {
+        await sendNotificationEmail({
+          firstName: FirstName,
+          lastName: LastName,
+          email: Email,
+          number: Number,
+          subject: Subject,
+          message: Message
+        });
+        console.log('Notification email sent successfully');
+      } catch (emailError) {
+        console.error('Email notification failed:', emailError);
+        // Email failure doesn't affect the contact form submission
+      }
+    }, 100); // Send email asynchronously
 
     res.status(201).json({
       success: true,
