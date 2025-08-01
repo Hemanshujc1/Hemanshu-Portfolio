@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const session = require('express-session');
 const path = require('path');
 require('dotenv').config();
 
@@ -47,6 +48,18 @@ app.set('views', path.join(__dirname, 'views'));
 // Static files
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+// Session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-session-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}));
+
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -58,7 +71,17 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio
 
 // Routes
 app.use('/api/contact', contactRoutes);
-app.use('/admin', require('./routes/admin'));
+
+// Admin routes with additional security headers
+app.use('/admin', (req, res, next) => {
+  // Add security headers for admin routes
+  res.set({
+    'X-Frame-Options': 'DENY',
+    'X-Content-Type-Options': 'nosniff',
+    'Referrer-Policy': 'strict-origin-when-cross-origin'
+  });
+  next();
+}, require('./routes/admin'));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

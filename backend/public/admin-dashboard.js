@@ -8,28 +8,28 @@ function viewMessage(index) {
     modalBody.innerHTML = 
         '<div class="detail-row">' +
             '<div class="detail-label">From</div>' +
-            '<div class="detail-value">' + contact.firstName + ' ' + contact.lastName + '</div>' +
+            '<div class="detail-value">' + (contact.firstName || 'N/A') + ' ' + (contact.lastName || 'N/A') + '</div>' +
         '</div>' +
         '<div class="detail-row">' +
             '<div class="detail-label">Email</div>' +
-            '<div class="detail-value"><a href="mailto:' + contact.email + '" class="email-link">' + contact.email + '</a></div>' +
+            '<div class="detail-value"><a href="mailto:' + (contact.email || '') + '" class="email-link">' + (contact.email || 'N/A') + '</a></div>' +
         '</div>' +
         '<div class="detail-row">' +
             '<div class="detail-label">Phone</div>' +
-            '<div class="detail-value"><a href="tel:' + contact.number + '" class="phone-link">' + contact.number + '</a></div>' +
+            '<div class="detail-value"><a href="tel:' + (contact.number || '') + '" class="phone-link">' + (contact.number || 'N/A') + '</a></div>' +
         '</div>' +
         '<div class="detail-row">' +
             '<div class="detail-label">Subject</div>' +
-            '<div class="detail-value"><strong>' + contact.subject + '</strong></div>' +
+            '<div class="detail-value"><strong>' + (contact.subject || 'N/A') + '</strong></div>' +
         '</div>' +
         '<div class="detail-row">' +
             '<div class="detail-label">Date</div>' +
-            '<div class="detail-value">' + new Date(contact.createdAt).toLocaleString() + '</div>' +
+            '<div class="detail-value">' + (contact.createdAt ? new Date(contact.createdAt).toLocaleString() : 'N/A') + '</div>' +
         '</div>' +
         '<div class="detail-row">' +
             '<div class="detail-label">Message</div>' +
             '<div class="detail-value">' +
-                '<div class="message-full">' + contact.message + '</div>' +
+                '<div class="message-full">' + (contact.message || 'N/A') + '</div>' +
             '</div>' +
         '</div>';
     
@@ -70,8 +70,8 @@ function showNotification(message, type) {
 function changeStatus(contactId, newStatus) {
     console.log('Changing status for:', contactId, 'to:', newStatus);
     
-    fetch('/api/contact/' + contactId + '/status', {
-        method: 'PUT',
+    fetch('/admin/contact/' + contactId + '/status', {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -139,6 +139,21 @@ function filterContacts(status) {
 
 // Initialize event listeners when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Parse contacts data if it's a string
+    if (typeof window.contactsData === 'string') {
+        try {
+            window.contactsData = JSON.parse(window.contactsData);
+        } catch (e) {
+            console.error('Error parsing contacts data:', e);
+            window.contactsData = [];
+        }
+    }
+    
+    // Ensure contactsData is an array
+    if (!Array.isArray(window.contactsData)) {
+        console.error('Contacts data is not an array:', window.contactsData);
+        window.contactsData = [];
+    }
     // Add event listeners for message buttons
     const messageButtons = document.querySelectorAll('.message-btn');
     messageButtons.forEach(function(button) {
