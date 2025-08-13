@@ -12,7 +12,6 @@ const About = () => {
       <HeadingPart text="About Me"></HeadingPart>
       <AboutMeSection />
       <MoreAboutMe/>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
       <EducationSection />
       <Contactsection />
     </div>
