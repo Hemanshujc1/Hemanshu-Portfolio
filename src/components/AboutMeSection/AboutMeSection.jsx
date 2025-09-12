@@ -64,7 +64,7 @@ const AboutMeSection = () => {
           ref={imageRef}
         >
           <img
-            src="/10.jpeg"
+            src="/Hemanshu_Picture.jpeg"
             alt="My pic"
             className="rounded-2xl lg:h-[40vh] md:h-[30vh] hover-effect"
           />
