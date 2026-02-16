@@ -56,7 +56,7 @@ useEffect(() => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-3xl font-bold text-lightest-slate mb-4"
+            className="text-2xl md:text-3xl font-bold text-lightest-slate mb-4"
           >
             {/* <span className="text-accent">HC's Portfolio</span> */}
             <span className="text-accent">&lt;Hemanshu Portfolio /&gt;</span>
