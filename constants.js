@@ -17,7 +17,7 @@ import githubLogo from './src/assets/tech_logo/github.png';
 import vscodeLogo from './src/assets/tech_logo/vscode.png';
 import postmanLogo from './src/assets/tech_logo/postman.png';
 import vercelLogo from './src/assets/tech_logo/vercel.png';
-import mysqlLogo from './src/assets/tech_logo/mysqllogo.png';
+import mysqlLogo from './src/assets/tech_logo/MySqlLogo.png';
 
 
 export const SkillsInfo = [
