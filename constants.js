@@ -5,7 +5,6 @@ import javascriptLogo from './src/assets/tech_logo/javascript.png';
 import reactjsLogo from './src/assets/tech_logo/reactjs.png';
 import nextjsLogo from './src/assets/tech_logo/nextjs.png';
 import tailwindcssLogo from './src/assets/tech_logo/tailwindcss.png';
-import gsapLogo from './src/assets/tech_logo/gsap.png';
 import nodejsLogo from './src/assets/tech_logo/nodejs.png';
 import expressjsLogo from './src/assets/tech_logo/express.png';
 import mongodbLogo from './src/assets/tech_logo/mongodb.png';
@@ -18,7 +17,7 @@ import githubLogo from './src/assets/tech_logo/github.png';
 import vscodeLogo from './src/assets/tech_logo/vscode.png';
 import postmanLogo from './src/assets/tech_logo/postman.png';
 import vercelLogo from './src/assets/tech_logo/vercel.png';
-
+import mysqlLogo from './src/assets/tech_logo/mysqllogo.png';
 
 
 export const SkillsInfo = [
@@ -31,7 +30,6 @@ export const SkillsInfo = [
       { name: 'React JS', logo: reactjsLogo },
       { name: 'Next JS', logo: nextjsLogo },
       { name: 'Tailwind CSS', logo: tailwindcssLogo },
-      { name: 'GSAP', logo: gsapLogo },
     ],
   },
   {
@@ -40,6 +38,7 @@ export const SkillsInfo = [
       { name: 'Node JS', logo: nodejsLogo },
       { name: 'Express JS', logo: expressjsLogo },
       { name: 'MongoDB', logo: mongodbLogo },
+      { name: 'MySQL', logo: mysqlLogo },
     ],
   },
   {
@@ -47,9 +46,7 @@ export const SkillsInfo = [
     skills: [
       { name: 'C', logo: cLogo },
       { name: 'C++', logo: cppLogo },
-      { name: 'Python', logo: pythonLogo },
-      { name: 'JavaScript', logo: javascriptLogo },
-      { name: 'TypeScript', logo: typescriptLogo },
+      // { name: 'Python', logo: pythonLogo },
     ],
   },
   {

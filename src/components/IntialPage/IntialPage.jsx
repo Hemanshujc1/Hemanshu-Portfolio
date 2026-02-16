@@ -1,54 +1,86 @@
 import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const InitialPage = ({ onFinish }) => {
   const [progress, setProgress] = useState(0);
-  const [isExiting, setIsExiting] = useState(false);
+
+  const messages = [
+  "Initializing Portfolio...",
+  "Compiling Experience...",
+  "Loading Projects...",
+  "Optimizing Performance...",
+  "Deploying Innovation..."
+];
+
+const [message, setMessage] = useState(messages[0]);
+
+
+useEffect(() => {
+  const messageInterval = setInterval(() => {
+    const random = Math.floor(Math.random() * messages.length);
+    setMessage(messages[random]);
+  }, 1000);
+
+  return () => clearInterval(messageInterval);
+}, []);
+
 
   useEffect(() => {
+    // Smoother progress animation
     const interval = setInterval(() => {
       setProgress((prev) => {
-        const next = prev + 2;
-        if (next >= 100) {
+        if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => {
-            setIsExiting(true); // Trigger exit animation
-            setTimeout(() => {
-              if (onFinish) onFinish();
-            }, 800); // Duration of the exit animation
-          }, 250);
+          setTimeout(onFinish, 500); // Wait a bit before finishing
           return 100;
         }
-        return next;
+        // Randomize the progress increment for a more "real" feel
+        const increment = Math.random() * 10;
+        return Math.min(prev + increment, 100);
       });
-    }, 30);
+    }, 150);
 
     return () => clearInterval(interval);
   }, [onFinish]);
 
   return (
-    <div
-      className={`fixed inset-0 z-50 flex items-center justify-center transition-all duration-[800ms] ease-in-out ${
-        isExiting
-          ? "opacity-0 translate-y-8 pointer-events-none"
-          : "opacity-100 translate-y-0"
-      }`}
-    >
-      {/* Background */}
-      {/* <div className="absolute inset-0 bg-black bg-[radial-gradient(#ffffff22_0.5px,transparent_0.5px)] bg-[size:50px_50px]"></div> */}
-      <div className="absolute inset-0 bg-black bg-[radial-gradient(#ffffff22_0.5px,transparent_0.5px)] bg-[size:20px_20px]"></div>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0, transition: { duration: 0.5 } }}
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-primary"
+      >
+        <div className="w-full max-w-md px-10 flex flex-col items-center gap-6">
+          {/* Logo or Icon */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-3xl font-bold text-lightest-slate mb-4"
+          >
+            {/* <span className="text-accent">HC's Portfolio</span> */}
+            <span className="text-accent">&lt;Hemanshu Portfolio /&gt;</span>
 
-      {/* Content */}
-      <div className="flex flex-col items-start text-4xl md:text-6xl font-bold px-8 py-6 gap-4 text-white z-10">
-        <h3 className="animate-fadeInUp">Hold up</h3>
-        <h3 className="animate-fadeInUp delay-200">Coding magic loading! 🚀</h3>
-        <h3 className="animate-fadeInUp delay-400">Almost there!</h3>
-      </div>
+          </motion.div>
 
-      {/* Progress */}
-      <div className="text-5xl md:text-6xl font-extrabold absolute bottom-[8%] right-[4%] px-6 py-2 text-white animate-bounceIn">
-        {progress}%
-      </div>
-    </div>
+          {/* Progress Bar Container */}
+          <div className="w-full h-1 bg-tertiary rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-accent shadow-[0_0_10px_rgba(100,255,218,0.7)]"
+              initial={{ width: "0%" }}
+              animate={{ width: `${progress}%` }}
+              transition={{ ease: "linear" }}
+            />
+          </div>
+
+          {/* Percentage */}
+          <div className="flex justify-between w-full text-sm font-mono text-slate">
+            <span>{message}</span>
+            <span>{Math.round(progress)}%</span>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

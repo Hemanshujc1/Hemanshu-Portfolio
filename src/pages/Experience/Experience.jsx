@@ -8,7 +8,7 @@ const experienceData = [
     logo: "/yourgtb_logo.png",
     company: "Your Global Tax Buddy",
     duration: "2024–2025",
-    department: "Web-Developer",
+    department: "Full Stack Developer ", 
     result: "Freelancing",
     descriptionPoints: [
       "Built a responsive website using Next.js, Tailwind CSS, to deliver a sleek and accessible UI across devices.",
@@ -20,9 +20,9 @@ const experienceData = [
   {
     logo: "/IIITT Logo.png",
     company: "Tnp-Cell, IIIT Trichy",
-    duration: "2024–2026",
+    duration: "2024–2025",
     department: "Coordinator",
-    result: "",
+    result: "Operations",
     descriptionPoints: [
       "Collaborated with placement officers and company representatives to facilitate campus recruitment activities.",
       "Coordinated student engagement and managed logistics for pre-placement talks, internships, and interviews."
@@ -35,7 +35,7 @@ const experienceData = [
     company: "E-cell, IIIT Trichy",
     duration: "2023–2026",
     department: "Overall Coordinator",
-    result: "",
+    result: "Leadership",
     descriptionPoints: [
       "Led the Entrepreneurship Cell in organizing workshops, speaker sessions, and startup networking events.",
       "Managed a team of coordinators to execute E-Cell initiatives and elevate campus startup culture."
@@ -48,7 +48,7 @@ const experienceData = [
     company: "E-cell, IIT Bombay",
     duration: "2023–2024",
     department: "Campus Executive",
-    result: "",
+    result: "Representative",
     descriptionPoints: [
       "Promoted IIT Bombay’s E-Cell events and Ideation competitions across campus.",
       "Acted as a liaison between the central E-Cell team and student participants to ensure smooth execution."
@@ -58,9 +58,9 @@ const experienceData = [
   {
     logo: "/IIITT Logo.png",
     company: "Fests, IIIT Trichy",
-    duration: " ",
+    duration: "2023",
     department: "Volunteer",
-    result: "",
+    result: "Volunteering",
     descriptionPoints: [
       "Contributed to organizing cultural and technical events by managing event logistics and coordination.",
       "Assisted in crowd handling, registrations, and event execution during institute fests."
@@ -72,7 +72,7 @@ const experienceData = [
     company: "Mess Committee, IIIT Trichy",
     duration: "2023–2024",
     department: "Member",
-    result: "",
+    result: "Management",
     descriptionPoints: [
       "Represented student feedback to improve food quality and hygiene in the mess facilities.",
       "Collaborated with administration and vendors to implement menu changes and monitor services."

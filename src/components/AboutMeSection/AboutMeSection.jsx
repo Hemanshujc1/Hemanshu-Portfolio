@@ -1,74 +1,59 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import "./AboutMeSection.css";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const AboutMeSection = () => {
   const textRef = useRef(null);
   const imageRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(textRef.current, {
-        x: -100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: "top 75%",
-          toggleActions: "play none none none",
-        },
-      });
-
-      gsap.from(imageRef.current, {
-        x: 100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
+  const textInView = useInView(textRef, { once: true, margin: "-100px" });
+  const imageInView = useInView(imageRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-6 px-4">
-      <div className="about-section flex items-center justify-around gap-20 px-4 flex-wrap-reverse">
-        <div
-          className="about-desc lg:w-[75vw] flex flex-col gap-10 md:w-[90vw]"
+    <section className="py-16 px-6 md:px-12 lg:px-24 bg-primary text-slate">
+      <div className="about-section flex flex-col lg:flex-row items-center justify-between gap-16 max-w-7xl mx-auto">
+        <motion.div
+          className="about-desc flex-1 flex flex-col gap-8 text-center lg:text-left"
           ref={textRef}
+          initial={{ opacity: 0, x: -50 }}
+          animate={textInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-5xl text-center">
-            The only way to do great work is to love what you do.
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-lightest-slate">
+            Engineering digital experiences with precision and passion.
           </h1>
-          <p className="text-3xl">
-            I’m Hemanshu Choudhary, an ECE undergrad at IIIT Trichy (2022 – 2026)
-            and a dedicated MERN‑stack developer. I build full‑stack web apps with
-            React, Node.js, TypeScript, Vite & Tailwind CSS, transforming ideas into
-            efficient, scalable solutions. As a DSA enthusiast and fast learner, I
-            thrive on collaboration—delivering user‑centric software that solves
-            real‑world problems.
+          <p className="text-xl md:text-2xl text-slate leading-relaxed font-light">
+            I’m{" "}
+            <span className="text-accent font-medium">Hemanshu Choudhary</span>,
+            a final-year ECE undergraduate at IIIT Trichy and a passionate Full
+            Stack Developer. I specialize in building high-performance web
+            applications using the
+            <span className="text-accent font-medium">
+              {" "}
+              MERN Stack (MongoDB, Express, React, Node.js)
+            </span>
+            and modern frameworks like Next.js. My focus is on writing clean,
+            scalable code that solves real-world problems and delivers
+            exceptional user experiences.
           </p>
-        </div>
+        </motion.div>
 
-        <div
-          className="image overflow-hidden lg:h-[40vh] rounded-2xl shadow-[0_0_15px_15px_rgba(130,69,236,0.3)] md:h-[30vh]"
+        <motion.div
+          className="image relative group"
           ref={imageRef}
+          initial={{ opacity: 0, x: 50 }}
+          animate={imageInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
-          <img
-            src="/Hemanshu_Picture.png"
-            alt="My pic"
-            className="rounded-2xl lg:h-[40vh] md:h-[30vh] hover-effect"
-          />
-        </div>
+          <div className="absolute -inset-2 bg-accent/20 rounded-md blur-lg opacity-75 group-hover:opacity-100 transition duration-500"></div>
+          <div className="relative rounded-md overflow-hidden bg-secondary shadow-xl border border-lightest-slate/10">
+            <img
+              src="/Hemanshu_Picture.png"
+              alt="Hemanshu Choudhary"
+              className="w-full max-w-sm md:max-w-md h-auto object-cover filter grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,107 +1,78 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import HeadingPart from "../HeadingPart/HeadingPart";
 import Button from "../Button/Button";
 import "./MoreAboutMe.css";
 
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
-
 const MoreAboutMe = () => {
   const sectionRef = useRef(null);
-  const headingRef = useRef(null);
-  const paraRefs = useRef([]);
-  const buttonRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    const context = gsap.context(() => {
-      // Animate heading
-      gsap.fromTo(
-        headingRef.current,
-        { y: -30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
 
-      // Animate paragraphs with stagger
-      gsap.fromTo(
-        paraRefs.current,
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.6,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
-
-      // Animate button
-      gsap.fromTo(
-        buttonRef.current,
-        { scale: 0.8, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.6,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-          },
-        }
-      );
-    }, sectionRef); // scoped context for GSAP
-
-    return () => context.revert(); // cleanup on unmount
-  }, []);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   return (
     <section
       ref={sectionRef}
-      className="Aboutme-section flex flex-col gap-5 flex-wrap px-4"
+      className="Aboutme-section flex flex-col gap-10 px-6 md:px-12 lg:px-24 py-16 max-w-6xl mx-auto"
     >
-      <div ref={headingRef}>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.6 }}
+      >
         <HeadingPart text="More About Me.." />
-      </div>
+      </motion.div>
 
-      <div className="aboutpara text-2xl flex flex-col gap-6 items-center px-5">
+      <motion.div
+        className="aboutpara text-xl md:text-2xl flex flex-col gap-8 text-gray-300 leading-relaxed font-light"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
         {[
-          `I’ve channeled my curiosity into full-stack web development. Every day, I dive into React, Node.js, TypeScript, Vite, and Tailwind CSS - building apps that are as performant as they are user‑friendly.`,
-          `Beyond MERN, I’m honing my problem‑solving skills through DSA challenges and hands‑on projects in Next.js, TypeScript, and Tailwind CSS. Whether it’s refining an algorithm or architecting a new feature, I thrive on translating complex requirements into clean, maintainable code.`,
-          `When I’m not coding, you’ll find me sketching out ideas for side projects or exploring Web3 protocols. I thrive on collaboration—pair‑programming with peers, gathering feedback, and iterating fast to bring concepts to life.`,
-          `I’m always open to new opportunities—internships, freelance gigs, or team projects. If you’re looking for a passionate developer who learns quickly and delivers impactful solutions, let’s connect and create something great together!`,
+          `My journey into software development started with a curiosity for how things work under the hood. This led me to explore the full spectrum of web development, from crafting intuitive front-end interfaces to architecting robust back-end systems. I constantly challenge myself to learn new technologies and best practices to keep my skills sharp.`,
+          `Beyond just writing code, I have a strong foundation in Data Structures and Algorithms, which helps me approach problems logically and efficiently. I enjoy tackling complex challenges, optimizing performance, and ensuring that every line of code contributes to a seamless final product.`,
+          `When I'm not at my keyboard, I enjoy exploring new tech trends, contributing to open-source discussions, and collaborating with like-minded developers. I believe that great software is built through teamwork, open communication, and a relentless drive for improvement.`,
+          `I am currently seeking opportunities to leverage my skills in a challenging and dynamic environment. If you are looking for a developer who is dedicated, adaptable, and eager to make an impact, I would love to connect and discuss how I can contribute to your team.`,
         ].map((text, index) => (
-          <p
+          <motion.p
             key={index}
-            ref={(el) => (paraRefs.current[index] = el)}
-            className="text-left"
+            variants={itemVariants}
+            className="text-left text-slate/90"
           >
             {text}
-          </p>
+          </motion.p>
         ))}
 
-        <div className="max-w-fit" ref={buttonRef}>
+        <motion.div
+          className="mt-4 flex justify-center lg:justify-start"
+          variants={itemVariants}
+        >
           <Button
             text="Download My Resume"
             link="https://drive.google.com/file/d/1g1bd9Ed6kBs98u6-SaZ96pU2zpm8pe9v/view?usp=sharing"
-            className="p-2 rounded-xl"
+            className="!px-8 !py-3 !text-lg !rounded-md !border-accent !text-accent hover:!bg-accent/10 shadow-[0_0_20px_rgba(100,255,218,0.1)] hover:shadow-[0_0_30px_rgba(100,255,218,0.2)] transition-all"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

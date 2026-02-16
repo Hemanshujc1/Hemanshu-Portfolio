@@ -7,17 +7,23 @@ export default {
   ],
   theme: {
     extend: {
-      boxShadow: {
-        ambient: '0 0 100px 20px rgba(147, 51, 234, 0.4)', // purple ambient
+      colors: {
+        primary: "#0a192f",
+        secondary: "#112240",
+        tertiary: "#233554",
+        slate: "#8892b0",
+        "light-slate": "#a8b2d1",
+        "lightest-slate": "#ccd6f6",
+        white: "#e6f1ff",
+        accent: "#64ffda",
       },
-      backgroundImage: {
-        ambient: 'radial-gradient(circle at center, #991bfa, #1e1b4b)', // ambient bg
+      boxShadow: {
+        'glow': '0 0 10px rgba(100, 255, 218, 0.1)',
       },
       animation: {
         fadeInUp: 'fadeInUp 0.8s ease-out forwards',
         bounceIn: 'bounceIn 1s ease-out forwards',
       },
-      
       keyframes: {
         fadeInUp: {
           '0%': { opacity: 0, transform: 'translateY(20px)' },

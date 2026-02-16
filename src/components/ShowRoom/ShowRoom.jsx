@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import "./ShowRoom.css";
 
 const slides = [
@@ -38,86 +39,110 @@ const ShowRoom = () => {
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
 
   return (
-    <section className="px-6 sm:px-10 py-8">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl sm:text-4xl font-bold text-white">Work</h2>
-        <div className="w-24 h-1 bg-purple-500 mx-auto mt-2" />
-        <p className="text-gray-400 mt-4 text-base sm:text-lg font-semibold">
-          Showcasing my journey as a developer, all built with love.
+    <section className="px-6 sm:px-10 py-16 bg-primary">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold text-lightest-slate tracking-widest">
+          WORK
+        </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-accent to-blue-500 mx-auto mt-4 rounded-full" />
+        <p className="text-slate mt-6 text-base sm:text-lg font-light max-w-2xl mx-auto">
+          Showcasing my journey as a developer, all built with passion and
+          precision.
         </p>
       </div>
 
-      <div className="relative flex items-center justify-center bg-black overflow-hidden rounded-xl shadow-[0_0_10px_10px_rgba(130,69,236,0.3)] my-10 p-4">
-        <div
-          className="absolute inset-0 bg-cover bg-center blur-sm scale-105 opacity-30 rounded-xl"
-          style={{ backgroundImage: `url(${slides[current].image})` }}
-        />
-        <div className="relative z-10 w-full max-w-5xl bg-[#2d2d2d] rounded-xl shadow-lg">
-          <div className="flex flex-col items-center justify-center p-1">
-            <img
-              src={slides[current].image}
-              alt={slides[current].title}
-              className="w-full rounded-lg mb-4"
-            />
-            <div className="bg-gray-900 w-full rounded-xl px-4 py-1.5 text-center">
-              <h2 className="text-2xl sm:text-3xl font-bold text-purple-600 mb-2 showroomtitle">
+      <div className="relative max-w-5xl mx-auto my-10">
+        <div className="relative overflow-hidden rounded-xl shadow-2xl border border-lightest-slate/10 bg-secondary group">
+          <div className="flex flex-col md:flex-row">
+            {/* Image Part */}
+            <div className="w-full md:w-3/5 h-[300px] md:h-auto relative overflow-hidden bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+              <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-all duration-500 z-10" />
+              <img
+                src={slides[current].image}
+                alt={slides[current].title}
+                className="w-full h-full object-contain p-4 transform transition-transform duration-700 group-hover:scale-105 relative z-0"
+              />
+
+              {/* Mobile Controls - Overlay on Image */}
+              <div className="absolute inset-0 flex md:hidden items-center justify-between px-2 z-20 pointer-events-none">
+                <button
+                  onClick={prevSlide}
+                  className="pointer-events-auto p-2 rounded-full bg-secondary/80 text-lightest-slate hover:text-accent border border-lightest-slate/10 backdrop-blur-sm shadow-lg active:scale-95 transition-all"
+                  aria-label="Previous Slide"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="pointer-events-auto p-2 rounded-full bg-secondary/80 text-lightest-slate hover:text-accent border border-lightest-slate/10 backdrop-blur-sm shadow-lg active:scale-95 transition-all"
+                  aria-label="Next Slide"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </div>
+            </div>
+
+            {/* Content Part */}
+            <div className="w-full md:w-2/5 p-8 flex flex-col justify-center bg-secondary relative z-20 border-l border-lightest-slate/5">
+              <h3 className="text-2xl font-bold text-lightest-slate mb-4 group-hover:text-accent transition-colors">
                 {slides[current].title}
-              </h2>
-              <p className="text-sm sm:text-base font-mono text-white mb-4 showroomdes">
+              </h3>
+              <p className="text-slate text-sm leading-relaxed mb-6">
                 {slides[current].description}
               </p>
-              <div className="flex flex-wrap gap-3 justify-center items-center showroomtech mb-4">
+
+              <div className="flex flex-wrap gap-2 mb-8">
                 {slides[current].tech.map((tech, index) => (
                   <span
                     key={index}
-                    className="rounded-full px-3 py-1 bg-white text-black text-xs sm:text-sm"
+                    className="px-3 py-1 bg-primary/50 text-accent text-xs font-mono rounded-full border border-accent/20"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              <Button
-                text="Visit"
-                link={slides[current].link}
-                className="text-[14px] px-4 py-1 rounded-xl"
-              />
+
+              <div className="mt-auto">
+                <a
+                  href={slides[current].link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-lightest-slate hover:text-accent transition-colors pb-1 border-b border-transparent hover:border-accent"
+                >
+                  Visit Project <ExternalLink size={16} />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-2 z-20 h-10 w-10 sm:h-20 sm:w-20 arrowbutton"
-        >
-          <img
-            src="/leftarrow.svg"
-            alt="Previous"
-            className="w-full h-full rotate-[-135deg]"
-          />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-2 z-20 h-10 w-10 sm:h-20 sm:w-20 arrowbutton"
-        >
-          <img
-            src="/rightarrow.svg"
-            alt="Next"
-            className="w-full h-full rotate-[-45deg]"
-          />
-        </button>
+          {/* Controls - Desktop */}
+          <button
+            onClick={prevSlide}
+            className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-primary/80 text-lightest-slate hover:text-accent hover:bg-primary border border-lightest-slate/10 transition-all shadow-lg backdrop-blur-sm"
+            aria-label="Previous Slide"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 rounded-full bg-primary/80 text-lightest-slate hover:text-accent hover:bg-primary border border-lightest-slate/10 transition-all shadow-lg backdrop-blur-sm"
+            aria-label="Next Slide"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
       </div>
 
-      <div className="flex flex-wrap gap-6 justify-center items-center py-8 gotobutton">
+      <div className="flex flex-wrap gap-6 justify-center items-center py-8">
         <Button
           text="Work Details"
           link="/Work"
-          className="text-lg sm:text-2xl px-4 py-2 rounded-xl"
+          className="!px-6 !py-3 !text-base !rounded-md !border-accent !text-accent hover:!bg-accent/10"
         />
         <Button
           text="My Experience"
           link="/Experience"
-          className="text-lg sm:text-2xl px-4 py-2 rounded-xl"
+          className="!px-6 !py-3 !text-base !rounded-md !border-accent !text-accent hover:!bg-accent/10"
         />
       </div>
     </section>

@@ -5,9 +5,9 @@ import Contactsection from "../Contactsection/Contactsection";
 import SkillsSection from "../SkilsSection/SkillsSection";
 const Main = () => {
   return (
-    <div className="min-h-screen w-screen overflow-hidden pb-0 pt-24 flex flex-col gap-12">
+    <div className="min-h-screen w-full overflow-hidden pb-0 pt-24 flex flex-col gap-12">
       <LandingPage />
-      <SkillsSection/>
+      <SkillsSection />
       <Showroom />
       <Contactsection />
     </div>

@@ -1,90 +1,129 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { FiGithub, FiExternalLink } from "react-icons/fi"; // Added import for icons
 
-gsap.registerPlugin(ScrollTrigger);
-
-const ProjectCard = ({ title, description, image, links, reverse }) => {
+const ProjectCard = ({
+  title,
+  description,
+  image,
+  stack = [],
+  links,
+  reverse,
+}) => {
   const cardRef = useRef(null);
   const imageRef = useRef(null);
   const textRef = useRef(null);
+  const isInView = useInView(cardRef, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate image
-      gsap.from(imageRef.current, {
-        x: reverse ? 100 : -100,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
-      // Animate text
-      gsap.from(textRef.current, {
-        x: reverse ? -100 : 100,
-        opacity: 0,
-        duration: 1,
-        delay: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
+  const imageVariants = {
+    hidden: { opacity: 0, x: reverse ? 50 : -50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
-    return () => ctx.revert();
-  }, [reverse]);
+  const textVariants = {
+    hidden: { opacity: 0, x: reverse ? -50 : 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut", delay: 0.2 },
+    },
+  };
+
+  const githubLink = links?.find((link) => link.label === "GitHub")?.url;
+  const previewLink = links?.find((link) => link.label === "Preview")?.url;
 
   return (
-    <div
-      ref={cardRef}
-      className={`work-card flex flex-col lg:flex-row gap-12 py-20 ${
-        reverse ? "lg:flex-row-reverse" : ""
-      }`}
-    >
-      <div
-        ref={imageRef}
-        className="w-full lg:w-[45vw] h-auto rounded-xl shadow-[0_0_10px_10px_rgba(130,69,236,0.3)] hover:border-purple-600 hover:border-4 hover:shadow-none p-1"
+    <div className="w-full px-4 sm:px-6 md:px-8 py-8 md:py-12 bg-primary">
+      <motion.div
+        ref={cardRef}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className={`flex flex-col ${
+          reverse ? "lg:flex-row-reverse" : "lg:flex-row"
+        } items-center gap-8 lg:gap-16 max-w-7xl mx-auto`}
       >
-        <img src={image} alt={`${title} Screenshot`} className="rounded-xl w-full" />
-      </div>
-
-      <div
-        ref={textRef}
-        className="flex flex-col w-full lg:w-[40vw] gap-8 text-center justify-center items-center"
-      >
-        <div className="px-4 py-2 rounded-xl max-w-fit bg-ambient shadow-ambient">
-          <h1>{title}</h1>
+        {/* Image Section */}
+        <div className="w-full lg:w-3/5 group">
+          <motion.div
+            ref={imageRef}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.4 }}
+            className="relative overflow-hidden rounded-lg shadow-xl border border-lightest-slate/10 bg-secondary"
+          >
+            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all duration-300 z-10 w-full h-full"></div>
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+            />
+          </motion.div>
         </div>
-        <p className="px-4">{description}</p>
 
-        <div className="flex flex-wrap gap-6">
-          {links.map((link, index) => (
-            <a
-              key={index}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="workbutton flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-purple-600 to-purple-800 text-white text-sm font-medium shadow-[0_0_10px_10px_rgba(130,69,236,0.4)] hover:shadow-[0_20px_30px_rgba(130,69,236,0.6)] transition duration-300 ease-in-out"
-            >
-              
-              {typeof link.icon === "string" ? (
-                <img src={link.icon} alt="" className="w-7 h-7" />
-              ) : (
-                link.icon
+        {/* Text Section */}
+        <div className="w-full lg:w-2/5 flex flex-col gap-6 text-center lg:text-left">
+          <motion.div ref={textRef}>
+            <span className="text-accent font-mono text-sm tracking-widest uppercase mb-2 block">
+              Featured Project 
+            </span>
+            <h3 className="text-3xl md:text-3xl font-bold text-lightest-slate mb-4 group-hover:text-accent transition-colors">
+              {title}
+            </h3>
+
+            <div className="bg-secondary/90 backdrop-blur-sm p-6 rounded-lg shadow-lg border border-lightest-slate/5 mb-6 text-slate hover:shadow-glow/10 transition-shadow">
+              <p className="leading-relaxed">{description}</p>
+            </div>
+
+            {stack && stack.length > 0 && (
+              <ul className="flex flex-wrap gap-4 justify-center lg:justify-start mb-8 font-mono font-bold text-sm text-slate bg-[#302f2f] p-6 rounded-lg shadow-lg border border-lightest-slate/5">
+                {stack.map((item, index) => (
+                  <li key={index} className="flex items-center gap-1.5">
+                    <span className="text-accent">▹</span> {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            <div className="flex gap-6 justify-center lg:justify-start">
+              {githubLink && (
+                <a
+                  href={githubLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-lightest-slate hover:text-accent transition-colors text-2xl"
+                  aria-label="GitHub Link"
+                >
+                  <FiGithub />
+                </a>
               )}
-              {link.label} 
-            </a>
-          ))}
+              {previewLink && (
+                <a
+                  href={previewLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-lightest-slate hover:text-accent transition-colors text-2xl"
+                  aria-label="Live Demo Link"
+                >
+                  <FiExternalLink />
+                </a>
+              )}
+            </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

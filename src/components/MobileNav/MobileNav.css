@@ -1,16 +1,1 @@
-@media (min-width: 660px) {
-  .handicon{
-    font-size: 1.875rem /* 30px */;
-    line-height: 2.25rem /* 36px */;
-  }
-   .labeltext, .menutext{
-    font-size:36px;
-    line-height: 40px;
-   }
-   .socialicon{
-    font-size:48px;
-    line-height: 1;
-   }
-   
-  }
-  
+/* CSS cleared to use Tailwind classes directly in the component */

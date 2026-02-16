@@ -16,7 +16,7 @@ const Button = ({ text, link, className = "" }) => {
     <>
       <button
         onClick={handleClick}
-        className={`bg-purple-600 font-semibold border border-white text-white transition-all duration-300 ease-in-out hover:bg-black hover:scale-105 hover:shadow-lg ${className}`}
+        className={`px-6 py-3 rounded text-accent border border-accent font-medium transition-all duration-300 ease-in-out hover:bg-accent/10 hover:shadow-glow ${className}`}
       >
         {text}
       </button>
