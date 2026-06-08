@@ -3,7 +3,6 @@ import { Typewriter } from "react-simple-typewriter";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Button from "../Button/Button";
 import { Github, Linkedin, Mail } from "lucide-react";
-import "./LandingPage.css";
 
 const LandingPage = () => {
   const containerRef = useRef(null);

@@ -6,7 +6,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { TbBrandGmail } from "react-icons/tb";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import "./MobileNav.css";
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
