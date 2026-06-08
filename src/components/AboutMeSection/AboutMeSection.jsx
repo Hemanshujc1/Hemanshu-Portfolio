@@ -49,6 +49,7 @@ const AboutMeSection = () => {
             <img
               src="/Hemanshu_Picture.png"
               alt="Hemanshu Choudhary"
+              fetchpriority="high"
               className="w-full max-w-sm md:max-w-md h-auto object-cover filter grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105"
             />
           </div>

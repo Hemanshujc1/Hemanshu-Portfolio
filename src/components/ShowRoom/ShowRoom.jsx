@@ -97,9 +97,19 @@ const ShowRoom = () => {
             {/* Image Part */}
             <div className="w-full md:w-3/5 h-[300px] md:h-auto relative overflow-hidden bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
               <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-all duration-500 z-10" />
+              
+              {/* Preload all images so they are ready when the user clicks next */}
+              <div style={{ display: "none" }}>
+                {slides.map((slide, idx) => (
+                  <img key={idx} src={slide.image} alt="preload" fetchpriority={idx === 0 ? "high" : "low"} />
+                ))}
+              </div>
+
               <img
+                key={current} // Forces re-render for smooth transition if needed, or just changes src
                 src={slides[current].image}
                 alt={slides[current].title}
+                fetchpriority="high"
                 className="w-full h-full object-contain p-4 transform transition-transform duration-700 group-hover:scale-105 relative z-0"
               />
 
