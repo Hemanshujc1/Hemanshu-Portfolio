@@ -20,21 +20,20 @@ const AboutMeSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="text-4xl md:text-5xl font-bold leading-tight text-lightest-slate">
-            Engineering digital experiences with precision and passion.
+            Engineering secure, scalable digital experiences with precision.
           </h1>
           <p className="text-xl md:text-2xl text-slate leading-relaxed font-light">
             I’m{" "}
             <span className="text-accent font-medium">Hemanshu Choudhary</span>,
-            a final-year ECE undergraduate at IIIT Trichy and a passionate Full
-            Stack Developer. I specialize in building high-performance web
-            applications using the
+            an ECE graduate from IIIT Trichy and a passionate Software Engineer.
+            I specialize in architecting full-stack web applications and robust 
+            backend systems using the{" "}
             <span className="text-accent font-medium">
-              {" "}
-              MERN Stack (MongoDB, Express, React, Node.js)
+              MERN Stack and Next.js
             </span>
-            and modern frameworks like Next.js. My focus is on writing clean,
-            scalable code that solves real-world problems and delivers
-            exceptional user experiences.
+            . From engineering role-based access control platforms to delivering 
+            production-grade marketplaces, my focus is on writing clean, secure, 
+            and scalable code that solves complex real-world problems.
           </p>
         </motion.div>
 

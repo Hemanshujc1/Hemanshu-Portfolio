@@ -48,10 +48,10 @@ const MoreAboutMe = () => {
         animate={isInView ? "visible" : "hidden"}
       >
         {[
-          `My journey into software development started with a curiosity for how things work under the hood. This led me to explore the full spectrum of web development, from crafting intuitive front-end interfaces to architecting robust back-end systems. I constantly challenge myself to learn new technologies and best practices to keep my skills sharp.`,
-          `Beyond just writing code, I have a strong foundation in Data Structures and Algorithms, which helps me approach problems logically and efficiently. I enjoy tackling complex challenges, optimizing performance, and ensuring that every line of code contributes to a seamless final product.`,
-          `When I'm not at my keyboard, I enjoy exploring new tech trends, contributing to open-source discussions, and collaborating with like-minded developers. I believe that great software is built through teamwork, open communication, and a relentless drive for improvement.`,
-          `I am currently seeking opportunities to leverage my skills in a challenging and dynamic environment. If you are looking for a developer who is dedicated, adaptable, and eager to make an impact, I would love to connect and discuss how I can contribute to your team.`,
+          `My journey into software engineering started with a deep curiosity for how systems operate at scale. As an ECE graduate from IIIT Trichy, I've channeled this curiosity into building end-to-end applications—from engineering multi-vendor e-commerce marketplaces to architecting enterprise-grade employee onboarding platforms.`,
+          `During my time as a Software Engineer Intern at Vakrangee, I spearheaded the frontend development for a nationwide customer onboarding portal and engineered secure backend pipelines. I thrive on tackling complex architectural challenges, optimizing API layers with strict security practices, and designing normalized database schemas.`,
+          `Beyond product development, I have a strong foundation in Data Structures and Algorithms, having solved over 500 problems across various platforms. I also believe in the power of community and leadership, having served as the President of the Entrepreneurship Cell at my university, where I helped foster a culture of innovation.`,
+          `I am constantly seeking opportunities to leverage my full-stack expertise in a challenging, fast-paced environment. If you're looking for an engineer who is dedicated to building secure, high-performance systems and is eager to make a tangible impact, I'd love to connect.`,
         ].map((text, index) => (
           <motion.p
             key={index}

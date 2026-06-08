@@ -51,9 +51,8 @@ const Navbar = () => {
         <ul className="flex gap-8 text-sm font-medium text-lightest-slate">
           <NavLi to="/" text="Home" />
           <NavLi to="/About" text="About" />
-          <NavLi to="/Work" text="Work" />
+          <NavLi to="/Projects" text="Projects" />
           <NavLi to="/Experience" text="Experience" />
-          <NavLi to="/Contact" text="Contact" />
         </ul>
       </motion.div>
 

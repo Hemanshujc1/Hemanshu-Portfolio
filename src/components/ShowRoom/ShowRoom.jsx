@@ -5,28 +5,68 @@ import "./ShowRoom.css";
 
 const slides = [
   {
-    title: "Online Baithak",
+    title: "VaayuGo - Full Stack Multi-Vendor Marketplace",
     description:
-      "Engineered a full‑stack video‑conferencing platform modeled on Google Meet/Zoom, using Next.js, Node.js, TypeScript, and Tailwind CSS. Integrated GetStream.io for real‑time meeting rooms and Clerk for secure user authentication.",
-    image: "/onlinebaithak.png",
-    tech: ["TypeScript", "Clerk", "GetStream.io"],
-    link: "https://online-baithak.vercel.app",
+      "Designed and shipped a production-grade full stack multi-vendor marketplace with 3-role RBAC (Admin, Shopkeeper, Customer). Orchestrated backend systems including scheduled financial settlement generation, penalty engine, discount rules, normalised MySQL database schema, and bulk CSV/ZIP upload processing with integrated server-side image optimisation and PDF invoice generation.",
+    image: "/VaayuGo.png",
+    tech: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "Sequelize",
+      "node-cron",
+    ],
+    link: "https://github.com/Hemanshujc1/VaayuGo",
   },
   {
-    title: "Your Global Tax Buddy",
+    title: "StreetBite Task Portal",
     description:
-      "Developed a fully responsive Next.js website for a tax‑outsourcing startup. Implemented end‑to‑end features—from sleek UI layouts to a dynamic Web3Forms contact form.",
-    image: "/yourgtb.png",
-    tech: ["Next.js", "JavaScript", "Web3Forms"],
-    link: "https://www.yourglobaltaxbuddy.in/",
+      "Developed an end-to-end task management platform with 5-stage automated status transitions and real-time admin/employee dashboards, replacing manual email-based workflows. Secured the API layer with parameterised SQL queries, JWT-based RBAC, bcrypt, and isolated Multer upload directories for audit-ready task execution.",
+    image: "/StreetBite.png",
+    tech: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "Framer Motion",
+      "JWT",
+    ],
+    link: "https://github.com/Hemanshujc1/Portal",
+  },
+
+  {
+    title: "E-Commerce Platform",
+    description:
+      "Built a full-stack e-commerce platform with Next.js SSR, 2-tier admin system, multi-variant product catalog, cart, wishlist, checkout, and return/exchange management. Hardened the API with 6-layer security: Helmet, rate limiting, XSS sanitization, HPP prevention, CORS, and JWT token blacklisting on logout.",
+    image: "/Ecommerce.png",
+    tech: ["Next.js", "Node.js", "Express.js", "MySQL", "Axios"],
+    link: "https://github.com/Hemanshujc1/Ecommerce",
+  },
+  {
+    title: "E-Cell IIIT Trichy Web Platform",
+    description:
+      "Official web platform for the Entrepreneurship Cell of IIIT Trichy. A premium, high-performance web application designed to manage events, showcase team and alumni, and provide a seamless administrative experience.",
+    image: "/Ecell.png",
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion", "Node.js", "Express.js"],
+    link: "https://github.com/Hemanshujc1/Ecell-IIITT",
+  },
+
+  {
+    title: "Online Bhaithak",
+    description:
+      "A full‑stack, Web3‑inspired video‑conferencing platform built with Next.js, Node.js, TypeScript & Tailwind CSS. Integrates GetStream.io for real‑time rooms and Clerk for secure user authentication.",
+    image: "/onlinebaithak.png",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "GetStream.io", "Clerk"],
+    link: "https://github.com/Hemanshujc1/Online-Baithak",
   },
   {
     title: "Hemanshu Portfolio",
     description:
-      "A modern portfolio built with React, Vite, Node.js, and Tailwind CSS. Showcases my projects, skills, and contact info—complete with a dynamic contact form.",
+      "A fully responsive developer portfolio built with React, Vite, Node.js & Tailwind CSS. Showcases my projects, and skills, in a modern dark-themed UI.",
     image: "/Portfolio.png",
-    tech: ["React", "Node.js", "Tailwind CSS"],
-    link: "https://hemanshujc-portfolio.vercel.app",
+    tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+    link: "https://github.com/Hemanshujc1/Hemanshu-Portfolio",
   },
 ];
 
@@ -42,7 +82,7 @@ const ShowRoom = () => {
     <section className="px-6 sm:px-10 py-16 bg-primary">
       <div className="text-center mb-12">
         <h2 className="text-3xl sm:text-4xl font-bold text-lightest-slate tracking-widest">
-          WORK
+          Projects
         </h2>
         <div className="w-24 h-1 bg-gradient-to-r from-accent to-blue-500 mx-auto mt-4 rounded-full" />
         <p className="text-slate mt-6 text-base sm:text-lg font-light max-w-2xl mx-auto">
@@ -109,7 +149,7 @@ const ShowRoom = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-lightest-slate hover:text-accent transition-colors pb-1 border-b border-transparent hover:border-accent"
                 >
-                  Visit Project <ExternalLink size={16} />
+                  GitHub <ExternalLink size={16} />
                 </a>
               </div>
             </div>
@@ -135,8 +175,8 @@ const ShowRoom = () => {
 
       <div className="flex flex-wrap gap-6 justify-center items-center py-8">
         <Button
-          text="Work Details"
-          link="/Work"
+          text="Projects Details"
+          link="/Projects"
           className="!px-6 !py-3 !text-base !rounded-md !border-accent !text-accent hover:!bg-accent/10"
         />
         <Button

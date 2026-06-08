@@ -10,7 +10,7 @@ const Educationdata = [
     department: "B.Tech. in ECE",
     result: "CGPA: 8.54",
     descriptionPoints: [
-      "Pursuing core subjects like Digital Electronics, Signal Processing, and Embedded Systems, with additional focus on web development and DSA.",
+      "Studied core subjects like Digital Electronics, Signal Processing, and Embedded Systems, with additional focus on web development and DSA.",
       "Participated in multiple tech clubs and student bodies, balancing academics with leadership roles and real-world projects.",
     ],
     companylink:"https://iiitt.ac.in/"
@@ -49,7 +49,7 @@ const EducationSection = () => {
   return (
     <section className="py-6">
       <HeadingPart text="My Education"></HeadingPart>
-      <div className="Education-section px-10 py-20 flex flex-col gap-y-32">
+      <div className="Education-section px-10 py-20 flex flex-col gap-y-0">
         {Educationdata.map((exp, index) => (
           <InfoCard key={index} {...exp} />
         ))}

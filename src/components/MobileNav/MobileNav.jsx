@@ -53,9 +53,8 @@ const MobileNav = () => {
   const menuItems = [
     { menu: "HOME", navlink: "/" },
     { menu: "ABOUT", navlink: "/About" },
-    { menu: "WORK", navlink: "/Work" },
+    { menu: "Projects", navlink: "/Projects" },
     { menu: "EXPERIENCE", navlink: "/Experience" },
-    { menu: "CONTACT", navlink: "/Contact" },
   ];
 
   const sidebarVariants = {
