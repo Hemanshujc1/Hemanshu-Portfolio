@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaWhatsapp } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TbBrandGmail } from "react-icons/tb";
@@ -27,7 +27,7 @@ const MobileNav = () => {
       label: "Whatsapp",
       icon: <FaWhatsapp className="text-3xl" />,
       bg: "bg-[#25D366]",
-      link: "https://wa.me/917021552408?text=Hello!%20Hemanshu%20I%20just%20came%20across%20your%20portfolio.",
+      link: "https://wa.me/917021552408?text=Hello%20Dev%20Solutions!%20I%20would%20like%20to%20get%20a%20free%20quote.",
     },
     {
       label: "Github",
@@ -36,24 +36,19 @@ const MobileNav = () => {
       link: "https://github.com/Hemanshujc1",
     },
     {
-      label: "LinkedIn",
-      icon: <FaLinkedin className="text-3xl" />,
-      bg: "bg-[#0077B5]",
-      link: "https://www.linkedin.com/in/hemanshuchoudhary/",
-    },
-    {
       label: "Gmail",
       icon: <TbBrandGmail className="text-3xl" />,
       bg: "bg-red-600",
-      link: "mailto:hemanshuwork26@gmail.com",
+      link: "mailto:rhdevsolutions@gmail.com",
     },
   ];
 
   const menuItems = [
     { menu: "HOME", navlink: "/" },
+    { menu: "SERVICES", navlink: "/Services" },
+    { menu: "PACKAGES", navlink: "/Packages" },
+    { menu: "PROJECTS", navlink: "/Projects" },
     { menu: "ABOUT", navlink: "/About" },
-    { menu: "Projects", navlink: "/Projects" },
-    { menu: "EXPERIENCE", navlink: "/Experience" },
   ];
 
   const sidebarVariants = {

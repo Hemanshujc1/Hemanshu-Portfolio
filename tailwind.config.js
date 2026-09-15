@@ -8,17 +8,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0a192f",
-        secondary: "#112240",
-        tertiary: "#233554",
-        slate: "#8892b0",
-        "light-slate": "#a8b2d1",
-        "lightest-slate": "#ccd6f6",
-        white: "#e6f1ff",
-        accent: "#64ffda",
+        primary: "#090d16",
+        secondary: "#111827",
+        tertiary: "#1e293b",
+        slate: "#94a3b8",
+        "light-slate": "#cbd5e1",
+        "lightest-slate": "#f8fafc",
+        white: "#ffffff",
+        accent: "#6366f1",
       },
       boxShadow: {
-        'glow': '0 0 10px rgba(100, 255, 218, 0.1)',
+        'glow': '0 0 20px rgba(99, 102, 241, 0.35)',
       },
       animation: {
         fadeInUp: 'fadeInUp 0.8s ease-out forwards',

@@ -16,7 +16,7 @@ const Navbar = () => {
     }
   });
 
-  const brandText = "{ Hemanshu Choudhary }";
+  const brandText = "Dev Solutions";
 
   return (
     <motion.nav
@@ -26,18 +26,26 @@ const Navbar = () => {
       }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
-      className="fixed top-0 w-full z-[6000] px-6 lg:px-12 py-4 flex justify-between items-center backdrop-blur-md bg-primary/90 border-b border-lightest-slate/5"
+      className="fixed top-0 w-full z-[6000] px-6 lg:px-12 py-3.5 flex justify-between items-center backdrop-blur-md bg-primary/90 border-b border-lightest-slate/10 shadow-lg"
     >
-      <div className="logo relative z-50 ">
-        <Link to="/">
-          <motion.h1
+      <div className="logo relative z-50">
+        <Link to="/" className="flex items-center gap-2 group">
+          <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-accent to-blue-500 flex items-center justify-center font-mono font-black text-primary text-lg shadow-glow">
+            DS
+          </div>
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-xl md:text-2xl font-bold text-accent hover:text-accent/80 transition-all duration-300"
+            className="flex flex-col"
           >
-            {brandText}
-          </motion.h1>
+            <span className="text-xl md:text-2xl font-bold text-lightest-slate group-hover:text-accent transition-colors tracking-tight">
+              {brandText}
+            </span>
+            <span className="text-[10px] uppercase font-mono tracking-widest text-accent -mt-1 hidden sm:block">
+              Digital Growth Studio
+            </span>
+          </motion.div>
         </Link>
       </div>
 
@@ -48,12 +56,22 @@ const Navbar = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="hidden lg:flex items-center gap-8"
       >
-        <ul className="flex gap-8 text-sm font-medium text-lightest-slate">
+        <ul className="flex gap-7 text-sm font-medium text-lightest-slate">
           <NavLi to="/" text="Home" />
-          <NavLi to="/About" text="About" />
+          <NavLi to="/Services" text="Services" />
+          <NavLi to="/Packages" text="Packages" />
           <NavLi to="/Projects" text="Projects" />
-          <NavLi to="/Experience" text="Experience" />
+          <NavLi to="/About" text="About" />
         </ul>
+
+        <a
+          href="https://wa.me/917021552408?text=Hello%20Dev%20Solutions!%20I%20would%20like%20to%20get%20a%20free%20quote%20for%20my%20business."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-5 py-2.5 rounded-lg bg-accent text-white font-semibold text-xs tracking-wider uppercase transition-all duration-300 hover:shadow-glow hover:scale-105 active:scale-95"
+        >
+          Get Free Quote
+        </a>
       </motion.div>
 
       {/* Mobile Navigation */}
