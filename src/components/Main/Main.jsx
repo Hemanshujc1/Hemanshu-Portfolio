@@ -1,16 +1,13 @@
 import React from "react";
-import LandingPage from "../LandingPage/LandingPage";
-import ServicesSection from "../ServicesSection/ServicesSection";
-import PackagesSection from "../PackagesSection/PackagesSection";
 import Showroom from "../ShowRoom/ShowRoom";
+import LandingPage from "../LandingPage/LandingPage";
 import Contactsection from "../Contactsection/Contactsection";
-
+import SkillsSection from "../SkilsSection/SkillsSection";
 const Main = () => {
   return (
-    <div className="min-h-screen w-full overflow-hidden pb-0 pt-16 flex flex-col gap-8">
+    <div className="min-h-screen w-full overflow-hidden pb-0 pt-24 flex flex-col gap-12">
       <LandingPage />
-      <ServicesSection />
-      <PackagesSection />
+      <SkillsSection />
       <Showroom />
       <Contactsection />
     </div>

@@ -4,37 +4,30 @@ import InitialPage from "./components/IntialPage/IntialPage";
 import Navbar from "./components/Navbar/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
-import Services from "./pages/Services/Services.jsx";
-import Packages from "./pages/Packages/Packages.jsx";
 import About from "./pages/About/About.jsx";
 import Experience from "./pages/Experience/Experience.jsx";
 import Projects from "./pages/Projects/Projects.jsx";
 import Topofpage from "./components/Topofpage/Topofpage";
 import NotFound from "./pages/NotFound/NotFound.jsx";
-
-import FloatingWhatsApp from "./components/FloatingWhatsApp/FloatingWhatsApp";
-
 function App() {
   const [showInitial, setShowInitial] = useState(true);
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-primary text-slate">
-      {showInitial ? (
+    <div className="relative min-h-screen overflow-x-hidden">
+
+       {showInitial ? (
         <InitialPage onFinish={() => setShowInitial(false)} />
       ) : (
         <>
           <Navbar />
           <Topofpage />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Services" element={<Services />} />
-            <Route path="/Packages" element={<Packages />} />
-            <Route path="/Projects" element={<Projects />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/Experience" element={<Experience />} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/About" element={<About/>} />
+            <Route path="/Experience" element={<Experience/>} />
+            <Route path="/Projects" element={<Projects/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
-          <FloatingWhatsApp />
         </>
       )}
     </div>

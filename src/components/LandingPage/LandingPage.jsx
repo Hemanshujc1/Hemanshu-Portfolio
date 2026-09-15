@@ -2,8 +2,7 @@ import React, { useRef } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Button from "../Button/Button";
-import { FaWhatsapp, FaGithub } from "react-icons/fa";
-import { TbBrandGmail } from "react-icons/tb";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const LandingPage = () => {
   const containerRef = useRef(null);
@@ -52,12 +51,12 @@ const LandingPage = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col items-start w-full"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-accent text-sm font-medium border border-accent/20 mb-6 backdrop-blur-md shadow-glow">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-accent text-sm font-medium border border-accent/20 mb-6 backdrop-blur-md shadow-[0_0_15px_rgba(100,255,218,0.05)]">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
               </span>
-              Dev Solutions Studio
+              Available for new opportunities
             </span>
             <h1 className="hero-title text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-lightest-slate leading-[1.1] mb-2 w-full">
               Building{" "}
@@ -75,14 +74,14 @@ const LandingPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <span className="mr-2">We build</span>
+            <span className="mr-2">I build</span>
             <span className="text-accent font-semibold">
               <Typewriter
                 words={[
-                  "Modern Websites.",
-                  "AI Generated Videos.",
-                  "High-Retention Video Edits.",
-                  "High-ROI Meta Ads.",
+                  "Scalable Web Apps.",
+                  "Performant Backends.",
+                  "Interactive UIs.",
+                  "Full Stack Solutions.",
                 ]}
                 loop={0}
                 cursor
@@ -101,8 +100,8 @@ const LandingPage = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             Passionate about crafting seamless digital experiences through clean
-            architecture and modern design. From websites and AI videos to viral video
-            edits and Meta ads, we turn complex ideas into elegant solutions.
+            architecture and modern design. From enterprise backends to
+            beautiful frontends, I turn complex problems into elegant solutions.
           </motion.p>
 
           <motion.div
@@ -112,36 +111,33 @@ const LandingPage = () => {
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <Button
-              text="Explore Packages"
-              link="/Packages"
+              text="Download Resume"
+              link="https://drive.google.com/file/d/1g1bd9Ed6kBs98u6-SaZ96pU2zpm8pe9v/view?usp=sharing"
               className="!px-8 !py-4 !text-lg !rounded-md !bg-accent/10 !border-accent !text-accent hover:!bg-accent hover:!text-primary transition-all duration-300 shadow-[0_0_20px_rgba(100,255,218,0.15)] font-semibold"
             />
 
             <div className="flex items-center gap-4">
               <a
-                href="https://wa.me/917021552408"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate hover:text-accent transition-colors duration-300 p-3 border border-slate/20 rounded-full hover:border-accent/50 hover:bg-accent/10 bg-secondary/50 backdrop-blur-sm"
-                aria-label="WhatsApp"
-              >
-                <FaWhatsapp size={22} />
-              </a>
-              <a
-                href="mailto:rhdevsolutions@gmail.com"
-                className="text-slate hover:text-accent transition-colors duration-300 p-3 border border-slate/20 rounded-full hover:border-accent/50 hover:bg-accent/10 bg-secondary/50 backdrop-blur-sm"
-                aria-label="Email"
-              >
-                <TbBrandGmail size={22} />
-              </a>
-              <a
                 href="https://github.com/Hemanshujc1"
                 target="_blank"
                 rel="noreferrer"
                 className="text-slate hover:text-accent transition-colors duration-300 p-3 border border-slate/20 rounded-full hover:border-accent/50 hover:bg-accent/10 bg-secondary/50 backdrop-blur-sm"
-                aria-label="GitHub"
               >
-                <FaGithub size={22} />
+                <Github size={22} />
+              </a>
+              <a
+                href="https://linkedin.com/in/hemanshuchoudhary"
+                target="_blank"
+                rel="noreferrer"
+                className="text-slate hover:text-accent transition-colors duration-300 p-3 border border-slate/20 rounded-full hover:border-accent/50 hover:bg-accent/10 bg-secondary/50 backdrop-blur-sm"
+              >
+                <Linkedin size={22} />
+              </a>
+              <a
+                href="mailto:hemanshuwork26@gmail.com"
+                className="text-slate hover:text-accent transition-colors duration-300 p-3 border border-slate/20 rounded-full hover:border-accent/50 hover:bg-accent/10 bg-secondary/50 backdrop-blur-sm"
+              >
+                <Mail size={22} />
               </a>
             </div>
           </motion.div>
@@ -166,14 +162,14 @@ const LandingPage = () => {
                   <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                 </div>
                 <div className="text-slate/50 text-xs font-mono border border-slate/20 px-2 py-1 rounded">
-                  dev-solutions.jsx
+                  portfolio.jsx
                 </div>
               </div>
               <div className="flex-1 flex flex-col gap-4 items-center justify-center mt-6">
                 <div className="w-full h-full border border-dashed border-lightest-slate/10 rounded-xl flex items-center justify-center bg-primary/30 overflow-hidden relative group">
                   <div className="absolute inset-0 bg-gradient-to-tr from-accent/10 to-blue-500/10 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <span className="font-mono text-accent/90 text-xl font-bold tracking-widest z-10">
-                    &lt;Dev_Solutions /&gt;
+                    &lt;Hello_World /&gt;
                   </span>
                 </div>
               </div>
@@ -202,8 +198,8 @@ const LandingPage = () => {
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-1/3 -left-8 bg-secondary/90 backdrop-blur-xl border border-lightest-slate/10 px-5 py-2.5 rounded-full z-30 shadow-2xl flex items-center gap-2"
             >
-              <span className="text-cyan-400 font-semibold text-sm tracking-wide">
-                Websites &amp; AI
+              <span className="text-blue-400 font-semibold text-sm tracking-wide">
+                React
               </span>
             </motion.div>
             <motion.div
@@ -216,8 +212,8 @@ const LandingPage = () => {
               }}
               className="absolute bottom-1/3 -right-6 bg-secondary/90 backdrop-blur-xl border border-lightest-slate/10 px-5 py-2.5 rounded-full z-30 shadow-2xl flex items-center gap-2"
             >
-              <span className="text-emerald-400 font-semibold text-sm tracking-wide">
-                Video &amp; Meta Ads
+              <span className="text-green-400 font-semibold text-sm tracking-wide">
+                Node.js
               </span>
             </motion.div>
           </div>

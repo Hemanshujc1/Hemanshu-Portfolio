@@ -5,23 +5,25 @@ const InitialPage = ({ onFinish }) => {
   const [progress, setProgress] = useState(0);
 
   const messages = [
-    "Initializing Dev Solutions Studio...",
-    "Loading Web & AI Video Engines...",
-    "Calibrating High-Retention Video Assets...",
-    "Preparing High-ROI Meta Ad Funnels...",
-    "Unlocking Affordable Digital Growth..."
-  ];
+  "Initializing Portfolio...",
+  "Compiling Experience...",
+  "Loading Projects...",
+  "Optimizing Performance...",
+  "Deploying Innovation..."
+];
 
-  const [message, setMessage] = useState(messages[0]);
+const [message, setMessage] = useState(messages[0]);
 
-  useEffect(() => {
-    const messageInterval = setInterval(() => {
-      const random = Math.floor(Math.random() * messages.length);
-      setMessage(messages[random]);
-    }, 1000);
 
-    return () => clearInterval(messageInterval);
-  }, []);
+useEffect(() => {
+  const messageInterval = setInterval(() => {
+    const random = Math.floor(Math.random() * messages.length);
+    setMessage(messages[random]);
+  }, 1000);
+
+  return () => clearInterval(messageInterval);
+}, []);
+
 
   useEffect(() => {
     // Smoother progress animation
@@ -29,13 +31,14 @@ const InitialPage = ({ onFinish }) => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(onFinish, 400);
+          setTimeout(onFinish, 500); // Wait a bit before finishing
           return 100;
         }
-        const increment = Math.random() * 12 + 4;
+        // Randomize the progress increment for a more "real" feel
+        const increment = Math.random() * 10;
         return Math.min(prev + increment, 100);
       });
-    }, 120);
+    }, 150);
 
     return () => clearInterval(interval);
   }, [onFinish]);
@@ -53,18 +56,17 @@ const InitialPage = ({ onFinish }) => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-2xl md:text-3xl font-bold text-lightest-slate mb-4 text-center"
+            className="text-2xl md:text-3xl font-bold text-lightest-slate mb-4"
           >
-            <span className="text-accent">&lt;Dev Solutions /&gt;</span>
-            <p className="text-xs font-mono text-slate mt-1 tracking-widest uppercase">
-              Websites • AI Videos • Video Editing • Meta Ads
-            </p>
+            {/* <span className="text-accent">HC's Portfolio</span> */}
+            <span className="text-accent">&lt;Hemanshu Portfolio /&gt;</span>
+
           </motion.div>
 
           {/* Progress Bar Container */}
           <div className="w-full h-1 bg-tertiary rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-accent shadow-glow"
+              className="h-full bg-accent shadow-[0_0_10px_rgba(100,255,218,0.7)]"
               initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
               transition={{ ease: "linear" }}
